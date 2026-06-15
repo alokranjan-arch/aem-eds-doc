@@ -2,43 +2,33 @@ import { createOptimizedPicture } from '../../scripts/aem.js';
 
 export default function decorate(block) {
   const ul = document.createElement('ul');
+  const rows = [...block.children];
 
-  [...block.children].forEach((row) => {
+  for (let i = 0; i < rows.length; i += 2) {
     const li = document.createElement('li');
 
-    while (row.firstElementChild) {
-      li.append(row.firstElementChild);
-    }
+    const firstRow = rows[i].children;
+    const secondRow = rows[i + 1]?.children;
 
-    const cols = [...li.children];
+    const image = firstRow[0]?.innerHTML;
+    const name = firstRow[1]?.textContent;
 
-    // First row = image + name
-    const imageCol = cols[0];
-    const nameCol = cols[1];
-
-    // Second row = role + location (next row comes automatically in loop)
-    let role = '';
-    let location = '';
-
-    if (cols.length === 2 && row.nextElementSibling) {
-      const nextCols = [...row.nextElementSibling.children];
-      role = nextCols[0]?.textContent;
-      location = nextCols[1]?.textContent;
-    }
+    const role = secondRow?.[0]?.textContent || '';
+    const location = secondRow?.[1]?.textContent || '';
 
     li.innerHTML = `
       <div class="profile-card">
-        <div class="profile-img">${imageCol.innerHTML}</div>
-        <h2>${nameCol.textContent}</h2>
+        <div class="profile-img">${image}</div>
+        <h2>${name}</h2>
         <p class="role">${role}</p>
         <p class="location">${location}</p>
       </div>
     `;
 
     ul.append(li);
-  });
+  }
 
-  // Optimize images (same as your card logic ✅)
+  // optimize images
   ul.querySelectorAll('picture > img').forEach((img) => {
     img.closest('picture').replaceWith(
       createOptimizedPicture(img.src, img.alt, false, [{ width: '400' }])
