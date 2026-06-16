@@ -1,10 +1,21 @@
+/* =========================================
+   ✅ HERO WRAPPER (FINAL FIX)
+========================================= */
 .hero-wrapper {
   position: relative;
   border-radius: 16px;
   overflow: hidden;
-  display: block;   /* ✅ prevents rendering gaps */
+  color: #fff;
+
+  width: 100%;
+
+  /* ✅ THIS removes grey “shadow” effect */
+  background: #0b0b0f;
 }
-/* image */
+
+/* =========================================
+   ✅ IMAGE
+========================================= */
 .hero-bg img {
   width: 100%;
   height: 420px;
@@ -12,7 +23,9 @@
   display: block;
 }
 
-/* ✅ clean soft overlay */
+/* =========================================
+   ✅ SOFT OVERLAY (BALANCED)
+========================================= */
 .hero-wrapper::after {
   content: '';
   position: absolute;
@@ -22,33 +35,40 @@
     to right,
     rgba(0,0,0,0.35),
     rgba(0,0,0,0.1),
-    transparent
+    rgba(0,0,0,0)
   );
 
   z-index: 1;
 }
 
-/* ✅ alignment FIX */
+/* =========================================
+   ✅ CONTENT (ALIGNED WITH NAV)
+========================================= */
 .hero-content {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
 
-  left: 24px;   /* ✅ SAME as container */
+  left: 24px;          /* ✅ SAME as container */
+  right: 24px;         /* ✅ keeps balance */
 
   max-width: 500px;
   z-index: 2;
 }
 
-/* text */
+/* =========================================
+   ✅ TEXT
+========================================= */
 .hero-content h1 {
   font-size: 36px;
   margin-bottom: 10px;
+  font-weight: 600;
 }
 
 .hero-content p {
   color: #ddd;
   margin-bottom: 12px;
+  font-size: 15px;
 }
 
 .hero-features {
@@ -57,18 +77,37 @@
   margin-bottom: 16px;
 }
 
-/* buttons */
+/* =========================================
+   ✅ CTA
+========================================= */
 .hero-cta a {
+  display: inline-block;
   margin-right: 10px;
   padding: 10px 18px;
   border-radius: 8px;
+
   background: #7b2fff;
   color: #fff;
   text-decoration: none;
+
+  transition: 0.25s ease;
 }
 
 .hero-cta a:hover {
   background: #00d4ff;
   color: #000;
 }
-``
+
+/* =========================================
+   ✅ MOBILE
+========================================= */
+@media (max-width: 768px) {
+  .hero-content {
+    left: 20px;
+    right: 20px;
+  }
+
+  .hero-content h1 {
+    font-size: 26px;
+  }
+}
