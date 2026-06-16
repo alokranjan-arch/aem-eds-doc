@@ -4,7 +4,6 @@ export default function decorate(block) {
   let message = '';
   let highlight = '';
 
-  // ✅ parse key-value rows
   rows.forEach((row) => {
     const cells = row.children;
 
@@ -13,19 +12,22 @@ export default function decorate(block) {
     const key = cells[0]?.textContent.trim().toLowerCase();
     const value = cells[1]?.textContent.trim();
 
-    if (!key || !value) return;
+    if (!value) return;
 
     if (key === 'message') message = value;
     if (key === 'highlight') highlight = value;
   });
 
-  // ✅ build UI
+  // ✅ Build clean horizontal layout
   const wrapper = document.createElement('div');
   wrapper.className = 'announcement-wrapper';
 
   wrapper.innerHTML = `
-    <div class="announcement-message">${message}</div>
-    <div class="announcement-highlight">${highlight}</div>
+    <div class="announcement-content">
+      <span class="announcement-message">${message}</span>
+      <span class="announcement-separator">|</span>
+      <span class="announcement-highlight">${highlight}</span>
+    </div>
   `;
 
   block.replaceChildren(wrapper);
