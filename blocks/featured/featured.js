@@ -9,7 +9,7 @@ export default function decorate(block) {
   let description = '';
   let cta = '';
 
-  // ✅ parse table
+  // ✅ Parse key-value table
   rows.forEach((row) => {
     const cells = row.children;
     if (cells.length < 2) return;
@@ -18,6 +18,8 @@ export default function decorate(block) {
     const valueHTML = cells[1]?.innerHTML;
     const valueText = cells[1]?.textContent.trim();
 
+    if (!key || !valueText) return;
+
     if (key === 'image') image = valueHTML;
     if (key === 'title') title = valueText;
     if (key === 'tagline') tagline = valueText;
@@ -25,39 +27,38 @@ export default function decorate(block) {
     if (key === 'cta') cta = valueText;
   });
 
-  // ✅ build UI
-  const wrapper = document.createElement('div');
-  wrapper.className = 'featured-wrapper';
-
-  const imageDiv = document.createElement('div');
-  imageDiv.className = 'featured-image';
-  imageDiv.innerHTML = image;
-
-  // optimize image
-  imageDiv.querySelectorAll('picture > img').forEach((img) => {
-    img.closest('picture').replaceWith(
-      createOptimizedPicture(img.src, img.alt, false, [{ width: '800' }])
-    );
-  });
-
-  const contentDiv = document.createElement('div');
-  contentDiv.className = 'featured-content';
-
-  // ✅ split CTA into buttons
-  const ctas = cta.split('/').map(c => c.trim());
+  // ✅ Split CTA into buttons
+  const ctas = cta.split('/').map(c => c.trim()).filter(Boolean);
 
   const ctaHTML = ctas
     .map(text => `<a href="#">${text}</a>`)
     .join('');
 
-  contentDiv.innerHTML = `
-    <h2>${title}</h2>
-    <div class="featured-tagline">${tagline}</div>
-    <div class="featured-desc">${description}</div>
-    <div class="featured-cta">${ctaHTML}</div>
+  // ✅ ✅ IMPORTANT: NEW STRUCTURE (image + content together)
+  const wrapper = document.createElement('div');
+  wrapper.className = 'featured-wrapper';
+
+  wrapper.innerHTML = `
+    <div class="featured-bg">
+      ${image}
+      <div class="featured-content">
+        <h2>${title}</h2>
+        <div class="featured-tagline">${tagline}</div>
+        <div class="featured-desc">${description}</div>
+        <div class="featured-cta">${ctaHTML}</div>
+      </div>
+    </div>
   `;
 
-  wrapper.append(imageDiv, contentDiv);
+  // ✅ Optimize image
+  wrapper.querySelectorAll('picture > img').forEach((img) => {
+    img.closest('picture')?.replaceWith(
+      createOptimizedPicture(img.src, img.alt, false, [
+        { width: '1200' },
+      ])
+    );
+  });
 
+  // ✅ Replace table with final UI
   block.replaceChildren(wrapper);
 }
