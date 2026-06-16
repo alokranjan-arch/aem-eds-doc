@@ -423,3 +423,7 @@ main {
   margin-bottom: 0;
 }
 
+/* ✅ ONLY THIS FIXES NAV → HERO GAP CORRECTLY */
+main > .section:first-of-type {
+  margin-top: 24px;
+}
