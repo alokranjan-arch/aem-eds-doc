@@ -406,7 +406,10 @@ header .header {
 
 /* ✅ SPACING BETWEEN BLOCKS */
 main > .section {
-  margin: 24px 0;
+  
+margin: 0 0 24px 0;   /* ✅ only bottom spacing */
+  padding: 0;
+
 }
 
 
