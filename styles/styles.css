@@ -327,31 +327,33 @@ main .section.highlight {
 
 
 
+
 /* =========================================
-   ✅ ROOT VARIABLES (CRITICAL FIX)
+   ✅ ROOT (KEEP SIMPLE & CLEAN)
 ========================================= */
 
 :root {
-  --background-color: #050508;
-  --light-color: transparent;
-  --dark-color: #ffffff;
-  --text-color: #ffffff;
-  --link-color: #00d4ff;
-  --link-hover-color: #7b2fff;
+  --background-color: #f4f6f9;  /* soft light base */
+  --text-color: #131313;
+  --link-color: #3b63fb;
+  --link-hover-color: #1d3ecf;
 }
 
 /* =========================================
-   ✅ BODY BACKGROUND (FIXED PROPERLY)
+   ✅ BODY BACKGROUND (SUBTLE & CLEAN)
 ========================================= */
 
 body {
   display: none;
   margin: 0;
 
-  background:
-    radial-gradient(circle at 20% 20%, rgba(123,47,255,0.15), transparent 40%),
-    radial-gradient(circle at 80% 30%, rgba(0,212,255,0.08), transparent 40%),
-    radial-gradient(circle at center, #0a0a14, #050508);
+  /* ✅ very soft gradient */
+  background: linear-gradient(
+    180deg,
+    #f4f6f9 0%,
+    #eef1f6 50%,
+    #e8ecf2 100%
+  );
 
   color: var(--text-color);
   font-family: var(--body-font-family);
@@ -361,34 +363,18 @@ body.appear {
   display: block;
 }
 
-/* ✅ Atmospheric glow layer */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background: radial-gradient(circle, rgba(255,255,255,0.04), transparent);
-  pointer-events: none;
-  z-index: 0;
-}
+/* =========================================
+   ✅ REMOVE ALL NOISE (IMPORTANT)
+========================================= */
 
-/* ✅ subtle grid texture */
+/* ❌ REMOVE heavy overlays */
+body::before,
 body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-
-  background-image:
-    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-
-  background-size: 40px 40px;
-
-  pointer-events: none;
-  z-index: 0;
+  display: none;
 }
 
 /* =========================================
-   ✅ REMOVE DEFAULT LIGHT SECTIONS (IMPORTANT)
+   ✅ FIX LIGHT SECTIONS (FROM DEFAULT AEM CSS)
 ========================================= */
 
 main .section.light,
@@ -397,7 +383,7 @@ main .section.highlight {
 }
 
 /* =========================================
-   ✅ LAYOUT WRAPPER
+   ✅ LAYOUT (KEEP CLEAN)
 ========================================= */
 
 main {
@@ -407,73 +393,5 @@ main {
 }
 
 .block {
-  position: relative;
-  z-index: 1;
   margin-bottom: 40px;
-}
-
-/* =========================================
-   ✅ BLOCK INTEGRATION (CORE FIX)
-========================================= */
-
-.hero-wrapper,
-.stats-wrapper,
-.carousel-wrapper,
-.featured-wrapper,
-.cards-wrapper,
-.announcement-wrapper {
-
-  background: rgba(12,12,25,0.65); /* ✅ glass feel */
-  backdrop-filter: blur(8px);
-
-  border-radius: 16px;
-  padding: 16px;
-
-  /* ✅ depth */
-  box-shadow: 0 12px 30px rgba(0,0,0,0.5);
-
-  border: 1px solid rgba(255,255,255,0.05);
-}
-
-/* =========================================
-   ✅ TYPOGRAPHY COLORS FIX
-========================================= */
-
-h1, h2, h3, h4, h5, h6 {
-  color: #ffffff;
-}
-
-p {
-  color: #cccccc;
-}
-
-/* =========================================
-   ✅ LINKS + BUTTON SYSTEM
-========================================= */
-
-a:any-link {
-  color: var(--link-color);
-}
-
-a:hover {
-  color: var(--link-hover-color);
-}
-
-/* modern button override */
-a.button.primary {
-  background: linear-gradient(135deg, #7b2fff, #5a1fd4);
-  border: none;
-  color: #fff;
-}
-
-a.button.primary:hover {
-  background: linear-gradient(135deg, #00d4ff, #7b2fff);
-}
-
-/* =========================================
-   ✅ SMOOTH GLOBAL EFFECTS
-========================================= */
-
-* {
-  transition: background 0.25s ease, transform 0.25s ease;
 }
