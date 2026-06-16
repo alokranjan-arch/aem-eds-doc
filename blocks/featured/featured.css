@@ -1,10 +1,16 @@
+/* ✅ WRAPPER */
 .featured-wrapper {
   position: relative;
   border-radius: 16px;
-  overflow: hidden;
+  overflow: hidden;   /* ✅ ensures nothing spills outside */
 }
 
-/* IMAGE */
+/* ✅ IMAGE CONTAINER */
+.featured-bg {
+  position: relative;
+}
+
+/* ✅ IMAGE */
 .featured-bg img {
   width: 100%;
   height: 420px;
@@ -12,32 +18,38 @@
   display: block;
 }
 
-/* ✅ LIGHT OVERLAY */
+/* ✅ FIXED GRADIENT (NO BLACK PATCH) */
 .featured-bg::after {
   content: '';
   position: absolute;
   inset: 0;
+
+  /* ✅ IMPORTANT: NO DARK BLACK START */
   background: linear-gradient(
     to right,
-    rgba(0,0,0,0.4),
-    rgba(0,0,0,0.1),
-    transparent
+    rgba(0,0,0,0.25) 10%,
+    rgba(0,0,0,0.15) 25%,
+    rgba(0,0,0,0.05) 45%,
+    rgba(0,0,0,0) 65%
   );
+
   z-index: 1;
+  pointer-events: none;
 }
 
-/* ✅ TEXT ABOVE OVERLAY */
+/* ✅ TEXT ALWAYS ABOVE */
 .featured-content {
   position: absolute;
   top: 50%;
   left: 40px;
   transform: translateY(-50%);
-  z-index: 2;  /* ✅ THIS is why text was not visible */
+  z-index: 2;
+
   color: #fff;
-  max-width: 350px;
+  max-width: 340px;
 }
 
-/* TEXT */
+/* ✅ TEXT STYLE */
 .featured-content h2 {
   font-size: 34px;
   margin-bottom: 10px;
@@ -53,7 +65,7 @@
   margin-bottom: 16px;
 }
 
-/* BUTTONS */
+/* ✅ BUTTONS */
 .featured-cta a {
   margin-right: 10px;
   padding: 10px 16px;
@@ -61,4 +73,22 @@
   background: #7b2fff;
   color: #fff;
   text-decoration: none;
+}
+
+/* ✅ HOVER */
+.featured-cta a:hover {
+  background: #00d4ff;
+  color: #000;
+}
+
+/* ✅ RESPONSIVE */
+@media (max-width: 768px) {
+  .featured-bg img {
+    height: 320px;
+  }
+
+  .featured-content {
+    left: 20px;
+    max-width: 90%;
+  }
 }
