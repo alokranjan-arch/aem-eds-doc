@@ -16,7 +16,7 @@
   overflow: hidden;
   box-shadow: none;
 
-  margin-bottom: 100px;   /* ✅ gap between nav & hero */
+  padding-bottom: 100px;   /* ✅ gap between nav & hero */
 }
 
 /* brand */
