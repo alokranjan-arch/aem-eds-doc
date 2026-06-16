@@ -4,12 +4,17 @@ export default function decorate(block) {
 
   const rows = [...block.children];
 
-  // ✅ skip header row if present
-  rows.slice(1).forEach(row => {
+  rows.forEach((row) => {
     const cells = row.children;
 
-    const label = cells[0]?.textContent.trim();
+    // ✅ Skip invalid rows
+    if (cells.length < 2) return;
+
+    const label = cells[0]?.textContent.trim().toLowerCase();
     const value = cells[1]?.textContent.trim();
+
+    // ✅ Skip header row safely
+    if (!label || !value || label === 'stats') return;
 
     const card = document.createElement('div');
     card.className = 'stat-card';
@@ -19,8 +24,9 @@ export default function decorate(block) {
       <p>${label}</p>
     `;
 
-    wrapper.append(card);
+    wrapper.appendChild(card);
   });
 
   block.replaceChildren(wrapper);
 }
+``
