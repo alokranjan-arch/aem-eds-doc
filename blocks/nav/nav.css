@@ -8,9 +8,15 @@
   background: #0b0b0f;
   color: #fff;
 
-  padding: 16px 0;   /* ✅ NO SIDE PADDING */
+  padding: 16px 0;
 
   border-radius: 12px;
+
+  /* ✅ fixes grey edge */
+  overflow: hidden;
+  box-shadow: none;
+
+  margin-bottom: 16px;   /* ✅ gap between nav & hero */
 }
 
 /* brand */
@@ -34,33 +40,4 @@
 
 .nav-links a:hover {
   color: #00d4ff;
-}
-
-/* mobile */
-.nav-toggle {
-  display: none;
-}
-
-@media (max-width: 768px) {
-
-  .nav-toggle {
-    display: block;
-  }
-
-  .nav-links {
-    display: none;
-    flex-direction: column;
-
-    position: absolute;
-    top: 60px;
-    right: 0;
-
-    background: #111;
-    padding: 12px;
-    border-radius: 10px;
-  }
-
-  .nav-links.active {
-    display: flex;
-  }
 }
