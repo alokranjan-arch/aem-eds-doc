@@ -1,0 +1,48 @@
+.announcement-wrapper {
+  background: linear-gradient(90deg, #0b0b0f, #1a0033);
+  border-radius: 14px;
+  padding: 20px 30px;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #222;
+  position: relative;
+  overflow: hidden;
+}
+
+/* glow animation */
+.announcement-wrapper::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent, #7b2fff55, transparent);
+  opacity: 0;
+  transition: 0.4s;
+}
+
+.announcement-wrapper:hover::after {
+  opacity: 1;
+}
+
+/* message */
+.announcement-message {
+  font-size: 18px;
+  color: #ccc;
+}
+
+/* highlight */
+.announcement-highlight {
+  font-size: 20px;
+  font-weight: bold;
+  color: #00d4ff;
+}
+
+/* mobile */
+@media (max-width: 768px) {
+  .announcement-wrapper {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
+}
