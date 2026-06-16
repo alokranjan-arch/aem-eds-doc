@@ -329,41 +329,42 @@ main .section.highlight {
 
 
 /* =========================================
-   ✅ ROOT
+   ✅ ROOT (CLEAN BASE)
 ========================================= */
 
 :root {
-  --background-color: #656564;   /* ✅ soft cool grey */
+  --background-color: #bfc2c7;  /* neutral base */
   --text-color: #131313;
   --link-color: #3b63fb;
   --link-hover-color: #1d3ecf;
 }
 
 /* =========================================
-   ✅ BODY BACKGROUND (BALANCED)
+   ✅ BODY BACKGROUND (FINAL BALANCE)
 ========================================= */
 
 body {
   margin: 0;
 
-  /* ✅ subtle depth, not loud */
+  /* ✅ Mild grey gradient (very subtle, no noise) */
   background: linear-gradient(
     180deg,
-    #d4d7dc 0%,   /* slightly lighter top */
-    #c2c5ca 50%,  /* mid tone */
-    #b3b6bb 100%  /* slightly deeper bottom */
+    #d3d6da 0%,   /* slightly lighter top */
+    #bfc2c7 50%,  /* stable center */
+    #a8adb3 100%  /* slightly deeper bottom */
   );
 
   color: var(--text-color);
   font-family: var(--body-font-family);
 }
 
+/* keep Franklin behavior */
 body.appear {
   display: block;
 }
 
 /* =========================================
-   ✅ REMOVE NOISE
+   ✅ REMOVE ALL VISUAL NOISE
 ========================================= */
 
 body::before,
@@ -372,7 +373,7 @@ body::after {
 }
 
 /* =========================================
-   ✅ REMOVE LIGHT SECTION OVERRIDES
+   ✅ REMOVE DEFAULT LIGHT SECTIONS
 ========================================= */
 
 main .section.light,
@@ -381,7 +382,7 @@ main .section.highlight {
 }
 
 /* =========================================
-   ✅ CLEAN LAYOUT
+   ✅ LAYOUT (CLEAN STRUCTURE)
 ========================================= */
 
 main {
