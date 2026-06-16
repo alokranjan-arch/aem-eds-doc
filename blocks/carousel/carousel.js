@@ -8,61 +8,118 @@ export default function decorate(block) {
   track.className = 'carousel-track';
 
   const rows = [...block.children];
+  const items = [];
 
+  // ✅ build cards
   rows.forEach((row) => {
     const cells = row.children;
-
     if (cells.length < 2) return;
 
-    const imageHTML = cells[0]?.innerHTML;
-    const text = cells[1]?.textContent.trim();
+    const image = cells[0].innerHTML;
+    const text = cells[1].textContent.trim();
 
-    if (!imageHTML || !text) return;
+    if (!image || !text) return;
 
-    // ✅ Treat full text as ONE string
-    const parts = text.split('|').map(t => t.trim());
+    const [title, cta] = text.split('|').map(t => t.trim());
 
-    const title = parts[0];
-    const cta = parts[1] || '';
+    const el = document.createElement('div');
+    el.className = 'carousel-card';
 
-    const card = document.createElement('div');
-    card.className = 'carousel-card';
-
-    card.innerHTML = `
-      <div class="carousel-img">${imageHTML}</div>
-      <div class="carousel-content">
-        <h3>${title}</h3>
-        ${cta ? `<span class="carousel-cta">${cta}</span>` : ''}
+    el.innerHTML = `
+      <div class="carousel-inner">
+        <div class="carousel-img">${image}</div>
+        <div class="carousel-content">
+          <h3>${title}</h3>
+          <div class="carousel-cta">${cta}</div>
+        </div>
       </div>
     `;
 
-    // ✅ image optimization
-    card.querySelectorAll('picture > img').forEach((img) => {
-      img.closest('picture').replaceWith(
+    // optimize image
+    el.querySelectorAll('picture > img').forEach(img => {
+      img.closest('picture')?.replaceWith(
         createOptimizedPicture(img.src, img.alt, false, [{ width: '600' }])
       );
     });
 
-    track.appendChild(card);
+    track.appendChild(el);
+    items.push(el);
   });
 
+  // ✅ clone first items for looping (very important)
+  const clone1 = items[0].cloneNode(true);
+  const clone2 = items[1].cloneNode(true);
+  track.append(clone1, clone2);
+
   wrapper.append(track);
+
+  // ✅ arrows
+  const prev = document.createElement('button');
+  const next = document.createElement('button');
+  prev.className = 'carousel-arrow carousel-prev';
+  next.className = 'carousel-arrow carousel-next';
+  prev.textContent = '<';
+  next.textContent = '>';
+
+  wrapper.append(prev, next);
+
+  // ✅ dots
+  const dots = document.createElement('div');
+  dots.className = 'carousel-dots';
+
+  items.forEach((_, i) => {
+    const dot = document.createElement('span');
+    dot.className = 'carousel-dot';
+    if (i === 0) dot.classList.add('active');
+
+    dot.onclick = () => goTo(i);
+
+    dots.append(dot);
+  });
+
+  wrapper.append(dots);
+
   block.replaceChildren(wrapper);
 
-  // ✅ AUTO SLIDE (2 visible at once)
+  // ✅ logic
   let index = 0;
-  const cards = track.children;
-  const total = cards.length;
 
-  setInterval(() => {
+  function update() {
+    track.style.transform = `translateX(-${index * 50}%)`;
+
+    dots.querySelectorAll('.carousel-dot').forEach((d, i) => {
+      d.classList.toggle('active', i === index % items.length);
+    });
+  }
+
+  function nextSlide() {
     index++;
+    track.style.transition = '0.6s';
+    update();
 
-    // loop properly for 3 items showing 2
-    if (index > total - 2) {
-      index = 0;
+    if (index === items.length) {
+      setTimeout(() => {
+        track.style.transition = 'none';
+        index = 0;
+        update();
+      }, 600);
     }
+  }
 
-    const offset = index * 320; // card width + gap
-    track.style.transform = `translateX(-${offset}px)`;
-  }, 3000);
+  function prevSlide() {
+    if (index === 0) index = items.length - 1;
+    else index--;
+    update();
+  }
+
+  function goTo(i) {
+    index = i;
+    update();
+  }
+
+  next.onclick = nextSlide;
+  prev.onclick = prevSlide;
+
+  // ✅ autoplay
+  setInterval(nextSlide, 3000);
 }
