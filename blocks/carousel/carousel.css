@@ -10,32 +10,33 @@
   transition: transform 0.5s ease;
 }
 
-/* ✅ Exactly 2 items visible */
+/* ✅ EXACT 2 ITEMS ONLY */
 .carousel-card {
-  width: 50%;
-  flex-shrink: 0;
-  padding: 10px;
+  flex: 0 0 50%;
+  max-width: 50%;
   box-sizing: border-box;
+  padding: 0 8px;
 }
 
-/* Card content */
+/* Card container */
 .carousel-inner {
   background: #0b0b0f;
-  border-radius: 12px;
+  border-radius: 16px;
   overflow: hidden;
 }
 
 /* Image */
 .carousel-img img {
   width: 100%;
-  height: 200px;
+  height: 220px;
   object-fit: cover;
+  display: block;
 }
 
-/* ✅ FIX TEXT ALIGNMENT */
+/* ✅ CENTER TEXT */
 .carousel-content {
   text-align: center;
-  padding: 12px;
+  padding: 14px;
 }
 
 .carousel-content h3 {
@@ -45,4 +46,42 @@
 .carousel-cta {
   color: #00d4ff;
   font-size: 14px;
+}
+
+/* ✅ ARROWS */
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #111;
+  color: #fff;
+  border: none;
+  font-size: 20px;
+  padding: 6px 10px;
+  cursor: pointer;
+  border-radius: 6px;
+  z-index: 2;
+}
+
+.carousel-prev { left: 10px; }
+.carousel-next { right: 10px; }
+
+/* ✅ DOTS */
+.carousel-dots {
+  text-align: center;
+  margin-top: 12px;
+}
+
+.carousel-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin: 5px;
+  background: #777;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.carousel-dot.active {
+  background: #00d4ff;
 }
