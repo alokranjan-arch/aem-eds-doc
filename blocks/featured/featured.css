@@ -1,0 +1,69 @@
+/* ✅ wrapper */
+.featured-wrapper {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  background: #0b0b0f;
+  border-radius: 16px;
+  padding: 24px;
+  color: #fff;
+}
+
+/* ✅ image side */
+.featured-image {
+  flex: 1;
+}
+
+.featured-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+/* ✅ content side */
+.featured-content {
+  flex: 1;
+}
+
+/* title */
+.featured-content h2 {
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+/* tagline */
+.featured-tagline {
+  color: #00d4ff;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+/* description */
+.featured-desc {
+  color: #ccc;
+  margin-bottom: 20px;
+}
+
+/* ✅ CTA buttons */
+.featured-cta a {
+  display: inline-block;
+  margin-right: 10px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 14px;
+  background: #7b2fff;
+  color: #fff;
+  transition: 0.3s;
+}
+
+.featured-cta a:hover {
+  background: #00d4ff;
+}
+
+/* ✅ responsive */
+@media (max-width: 768px) {
+  .featured-wrapper {
+    flex-direction: column;
+  }
+}
