@@ -323,3 +323,112 @@ main .section.highlight {
   margin: 0;
   padding: 40px 0;
 }
+
+
+
+
+/* =========================================
+   GLOBAL BACKGROUND (MAIN FIX)
+========================================= */
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+
+  /* ✅ multi-layer gaming background */
+  background:
+    radial-gradient(circle at 20% 20%, rgba(123,47,255,0.15), transparent 40%),
+    radial-gradient(circle at 80% 30%, rgba(0,212,255,0.1), transparent 40%),
+    radial-gradient(circle at center, #0a0a14, #050508);
+
+  color: #fff;
+}
+
+/* ✅ subtle glow depth layer */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+
+  background: radial-gradient(circle, rgba(255,255,255,0.04), transparent);
+
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ✅ light texture grid (gaming feel) */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+
+  background-image:
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+
+  background-size: 40px 40px;
+
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* =========================================
+   LAYOUT + SPACING
+========================================= */
+
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 30px 20px;
+}
+
+.block {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 40px;
+}
+
+/* =========================================
+   BLOCK INTEGRATION (CRITICAL FIX)
+========================================= */
+
+/* ✅ make blocks feel connected to page */
+.hero-wrapper,
+.stats-wrapper,
+.carousel-wrapper,
+.featured-wrapper,
+.cards-wrapper,
+.announcement-wrapper {
+
+  background: rgba(12,12,25,0.6);      /* semi transparent */
+  backdrop-filter: blur(8px);          /* glass effect */
+  border-radius: 16px;
+
+  /* ✅ depth + floating feel */
+  box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+
+  padding: 16px;
+}
+
+/* =========================================
+   GLOBAL ACCENT SYSTEM
+========================================= */
+
+:root {
+  --primary: #7b2fff;
+  --accent: #00d4ff;
+}
+
+/* buttons */
+a {
+  color: var(--accent);
+}
+
+/* =========================================
+   OPTIONAL (SMALL POLISH)
+========================================= */
+
+/* smooth transitions globally */
+* {
+  transition: background 0.25s ease, transform 0.25s ease;
+}
