@@ -326,10 +326,8 @@ main .section.highlight {
 
 
 
-
-
 /* =========================================
-   ✅ ROOT
+   ✅ ROOT OVERRIDE
 ========================================= */
 
 :root {
@@ -362,21 +360,17 @@ body.appear {
 }
 
 /* =========================================
-   ✅ REMOVE NOISE
+   ✅ REMOVE DEFAULT CONFLICTS (CRITICAL)
 ========================================= */
 
-body::before,
-body::after {
-  display: none;
+/* ❌ REMOVE AEM margin causing grey bleed */
+main > div {
+  margin: 0 !important;
 }
 
-/* =========================================
-   ✅ REMOVE LIGHT SECTIONS
-========================================= */
-
-main .section.light,
-main .section.highlight {
-  background: transparent;
+/* ❌ REMOVE conflicting reset */
+main > .section:first-of-type {
+  margin-top: 0 !important;
 }
 
 /* =========================================
@@ -392,38 +386,48 @@ header .header {
 }
 
 /* =========================================
-   ✅ FIX NAV-HERO GAP (REAL FIX)
+   ✅ REAL NAV → HERO GAP FIX
 ========================================= */
 
-header {
-  display: block;
-  padding-bottom: 20px;   /* ✅ THIS creates spacing */
+/* ✅ push entire main down */
+main {
+  margin-top: 24px;  /* ✅ ONLY reliable spacing */
+  padding: 30px 0;
 }
 
 /* =========================================
-   ✅ FIX SECTION SPACING & BLEED
+   ✅ CLEAN SECTION SPACING
 ========================================= */
 
 main > .section {
   margin-bottom: 24px;
   padding: 0;
-
-  background: transparent;  /* ✅ VERY IMPORTANT */
-}
-
-main {
-  padding: 30px 0;   /* ✅ REMOVE side padding */
+  background: transparent;
 }
 
 /* =========================================
-   ✅ REMOVE OLD BLOCK MARGINS
+   ✅ REMOVE OLD BLOCK SPACING
 ========================================= */
 
 .block {
   margin-bottom: 0;
 }
 
-/* ✅ ONLY THIS FIXES NAV → HERO GAP CORRECTLY */
-main > .section:first-of-type {
-  margin-top: 24px;
+/* =========================================
+   ✅ HERO FIX (REMOVE GREY EDGE)
+========================================= */
+
+.hero-wrapper {
+  background: #0b0b0f;   /* ✅ removes fake shadow */
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+/* =========================================
+   ✅ OPTIONAL: REMOVE LIGHT SECTION BG
+========================================= */
+
+main .section.light,
+main .section.highlight {
+  background: transparent;
 }
