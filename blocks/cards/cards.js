@@ -1,17 +1,40 @@
 import { createOptimizedPicture } from '../../scripts/aem.js';
 
 export default function decorate(block) {
-  /* change to ul, li */
-  const ul = document.createElement('ul');
-  [...block.children].forEach((row) => {
-    const li = document.createElement('li');
-    while (row.firstElementChild) li.append(row.firstElementChild);
-    [...li.children].forEach((div) => {
-      if (div.children.length === 1 && div.querySelector('picture')) div.className = 'cards-card-image';
-      else div.className = 'cards-card-body';
+  const wrapper = document.createElement('div');
+  wrapper.className = 'cards-wrapper';
+
+  const rows = [...block.children];
+
+  rows.forEach((row) => {
+    const cells = row.children;
+
+    if (cells.length < 2) return;
+
+    const image = cells[0].innerHTML;
+    const title = cells[1].textContent.trim();
+
+    if (!image || !title) return;
+
+    const card = document.createElement('div');
+    card.className = 'card-item';
+
+    card.innerHTML = `
+      <div class="card-img">${image}</div>
+      <div class="card-content">
+        <h3>${title}</h3>
+      </div>
+    `;
+
+    // optional image optimization
+    card.querySelectorAll('picture > img').forEach((img) => {
+      img.closest('picture')?.replaceWith(
+        createOptimizedPicture(img.src, img.alt, false, [{ width: '400' }])
+      );
     });
-    ul.append(li);
+
+    wrapper.appendChild(card);
   });
-  ul.querySelectorAll('picture > img').forEach((img) => img.closest('picture').replaceWith(createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }])));
-  block.replaceChildren(ul);
+
+  block.replaceChildren(wrapper);
 }
