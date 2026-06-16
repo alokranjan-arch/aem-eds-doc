@@ -1,0 +1,50 @@
+.stats-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+  padding: 30px;
+}
+
+.stat-card {
+  background: #0b0b0f;
+  border-radius: 14px;
+  padding: 20px;
+  text-align: center;
+  color: #fff;
+  border: 1px solid #1a1a2e;
+  transition: 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+/* glow effect */
+.stat-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent, #7b2fff33);
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.stat-card:hover::after {
+  opacity: 1;
+}
+
+.stat-card h2 {
+  font-size: 28px;
+  color: #00d4ff;
+  margin-bottom: 8px;
+}
+
+.stat-card p {
+  color: #aaa;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* subtle animation */
+.stat-card:hover {
+  transform: translateY(-5px);
+}
