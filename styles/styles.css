@@ -397,7 +397,7 @@ main {
 
 /* ✅ UNIVERSAL BLOCK CONTAINER FIX */
 main > .section > div {
-  max-width: 1200px;    /* ✅ same width for all */
-  margin: 0 auto;       /* ✅ center align */
-  padding: 0 20px;      /* ✅ same spacing */
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;   /* ✅ same for ALL blocks */
 }
