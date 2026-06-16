@@ -19,8 +19,11 @@ export default function decorate(block) {
 
     if (!imageHTML || !text) return;
 
-    // ✅ split text → title + CTA
-    const [title, cta] = text.split('|').map(t => t.trim());
+    // ✅ Treat full text as ONE string
+    const parts = text.split('|').map(t => t.trim());
+
+    const title = parts[0];
+    const cta = parts[1] || '';
 
     const card = document.createElement('div');
     card.className = 'carousel-card';
@@ -29,13 +32,13 @@ export default function decorate(block) {
       <div class="carousel-img">${imageHTML}</div>
       <div class="carousel-content">
         <h3>${title}</h3>
-        <a href="#" class="carousel-btn">${cta}</a>
+        ${cta ? `<span class="carousel-cta">${cta}</span>` : ''}
       </div>
     `;
 
-    // ✅ optimize images
+    // ✅ image optimization
     card.querySelectorAll('picture > img').forEach((img) => {
-      img.closest('picture')?.replaceWith(
+      img.closest('picture').replaceWith(
         createOptimizedPicture(img.src, img.alt, false, [{ width: '600' }])
       );
     });
@@ -44,7 +47,22 @@ export default function decorate(block) {
   });
 
   wrapper.append(track);
-
-  // ✅ replace block
   block.replaceChildren(wrapper);
+
+  // ✅ AUTO SLIDE (2 visible at once)
+  let index = 0;
+  const cards = track.children;
+  const total = cards.length;
+
+  setInterval(() => {
+    index++;
+
+    // loop properly for 3 items showing 2
+    if (index > total - 2) {
+      index = 0;
+    }
+
+    const offset = index * 320; // card width + gap
+    track.style.transform = `translateX(-${offset}px)`;
+  }, 3000);
 }
