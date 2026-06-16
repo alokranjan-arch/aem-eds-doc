@@ -329,31 +329,33 @@ main .section.highlight {
 
 
 /* =========================================
-   ✅ ROOT (KEEP SIMPLE & CLEAN)
+   ✅ ROOT
 ========================================= */
 
 :root {
-  --background-color: #b3b4b5;  /* soft light base */
+  --background-color: #bfc2c7;   /* ✅ soft cool grey */
   --text-color: #131313;
   --link-color: #3b63fb;
   --link-hover-color: #1d3ecf;
 }
 
 /* =========================================
-   ✅ BODY BACKGROUND (SUBTLE & CLEAN)
+   ✅ BODY BACKGROUND (BALANCED)
 ========================================= */
 
 body {
   margin: 0;
 
+  /* ✅ subtle depth, not loud */
   background: linear-gradient(
     180deg,
-    #f5f7fa 0%,
-    #e6e9ee 60%,
-    #cfcfcf 100%
+    #d4d7dc 0%,   /* slightly lighter top */
+    #c2c5ca 50%,  /* mid tone */
+    #b3b6bb 100%  /* slightly deeper bottom */
   );
 
   color: var(--text-color);
+  font-family: var(--body-font-family);
 }
 
 body.appear {
@@ -361,17 +363,16 @@ body.appear {
 }
 
 /* =========================================
-   ✅ REMOVE ALL NOISE (IMPORTANT)
+   ✅ REMOVE NOISE
 ========================================= */
 
-/* ❌ REMOVE heavy overlays */
 body::before,
 body::after {
   display: none;
 }
 
 /* =========================================
-   ✅ FIX LIGHT SECTIONS (FROM DEFAULT AEM CSS)
+   ✅ REMOVE LIGHT SECTION OVERRIDES
 ========================================= */
 
 main .section.light,
@@ -380,7 +381,7 @@ main .section.highlight {
 }
 
 /* =========================================
-   ✅ LAYOUT (KEEP CLEAN)
+   ✅ CLEAN LAYOUT
 ========================================= */
 
 main {
