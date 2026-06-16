@@ -328,35 +328,50 @@ main .section.highlight {
 
 
 /* =========================================
-   GLOBAL BACKGROUND (MAIN FIX)
+   ✅ ROOT VARIABLES (CRITICAL FIX)
+========================================= */
+
+:root {
+  --background-color: #050508;
+  --light-color: transparent;
+  --dark-color: #ffffff;
+  --text-color: #ffffff;
+  --link-color: #00d4ff;
+  --link-hover-color: #7b2fff;
+}
+
+/* =========================================
+   ✅ BODY BACKGROUND (FIXED PROPERLY)
 ========================================= */
 
 body {
+  display: none;
   margin: 0;
-  font-family: Arial, sans-serif;
 
-  /* ✅ multi-layer gaming background */
   background:
     radial-gradient(circle at 20% 20%, rgba(123,47,255,0.15), transparent 40%),
-    radial-gradient(circle at 80% 30%, rgba(0,212,255,0.1), transparent 40%),
+    radial-gradient(circle at 80% 30%, rgba(0,212,255,0.08), transparent 40%),
     radial-gradient(circle at center, #0a0a14, #050508);
 
-  color: #fff;
+  color: var(--text-color);
+  font-family: var(--body-font-family);
 }
 
-/* ✅ subtle glow depth layer */
+body.appear {
+  display: block;
+}
+
+/* ✅ Atmospheric glow layer */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
-
   background: radial-gradient(circle, rgba(255,255,255,0.04), transparent);
-
   pointer-events: none;
   z-index: 0;
 }
 
-/* ✅ light texture grid (gaming feel) */
+/* ✅ subtle grid texture */
 body::after {
   content: '';
   position: fixed;
@@ -373,7 +388,16 @@ body::after {
 }
 
 /* =========================================
-   LAYOUT + SPACING
+   ✅ REMOVE DEFAULT LIGHT SECTIONS (IMPORTANT)
+========================================= */
+
+main .section.light,
+main .section.highlight {
+  background: transparent;
+}
+
+/* =========================================
+   ✅ LAYOUT WRAPPER
 ========================================= */
 
 main {
@@ -389,10 +413,9 @@ main {
 }
 
 /* =========================================
-   BLOCK INTEGRATION (CRITICAL FIX)
+   ✅ BLOCK INTEGRATION (CORE FIX)
 ========================================= */
 
-/* ✅ make blocks feel connected to page */
 .hero-wrapper,
 .stats-wrapper,
 .carousel-wrapper,
@@ -400,35 +423,57 @@ main {
 .cards-wrapper,
 .announcement-wrapper {
 
-  background: rgba(12,12,25,0.6);      /* semi transparent */
-  backdrop-filter: blur(8px);          /* glass effect */
+  background: rgba(12,12,25,0.65); /* ✅ glass feel */
+  backdrop-filter: blur(8px);
+
   border-radius: 16px;
-
-  /* ✅ depth + floating feel */
-  box-shadow: 0 12px 30px rgba(0,0,0,0.4);
-
   padding: 16px;
+
+  /* ✅ depth */
+  box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+
+  border: 1px solid rgba(255,255,255,0.05);
 }
 
 /* =========================================
-   GLOBAL ACCENT SYSTEM
+   ✅ TYPOGRAPHY COLORS FIX
 ========================================= */
 
-:root {
-  --primary: #7b2fff;
-  --accent: #00d4ff;
+h1, h2, h3, h4, h5, h6 {
+  color: #ffffff;
 }
 
-/* buttons */
-a {
-  color: var(--accent);
+p {
+  color: #cccccc;
 }
 
 /* =========================================
-   OPTIONAL (SMALL POLISH)
+   ✅ LINKS + BUTTON SYSTEM
 ========================================= */
 
-/* smooth transitions globally */
+a:any-link {
+  color: var(--link-color);
+}
+
+a:hover {
+  color: var(--link-hover-color);
+}
+
+/* modern button override */
+a.button.primary {
+  background: linear-gradient(135deg, #7b2fff, #5a1fd4);
+  border: none;
+  color: #fff;
+}
+
+a.button.primary:hover {
+  background: linear-gradient(135deg, #00d4ff, #7b2fff);
+}
+
+/* =========================================
+   ✅ SMOOTH GLOBAL EFFECTS
+========================================= */
+
 * {
   transition: background 0.25s ease, transform 0.25s ease;
 }
