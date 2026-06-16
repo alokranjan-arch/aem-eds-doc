@@ -395,11 +395,16 @@ main {
   margin-bottom: 40px;
 }
 
-/* ✅ SINGLE SOURCE OF TRUTH */
+/* ✅ SINGLE WIDTH SYSTEM */
 main > .section > div {
-  max-width: 1100px;   /* ✅ consistent width */
-  margin: 0 auto;      /* ✅ center aligned */
-  padding: 0 24px;     /* ✅ SAME for all blocks */
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;   /* ✅ ONLY place where horizontal spacing exists */
   box-sizing: border-box;
+}
+
+/* ✅ equal spacing between blocks */
+main > .section {
+  margin: 32px 0;
 }
 
