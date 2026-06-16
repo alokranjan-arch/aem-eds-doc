@@ -9,7 +9,7 @@
 
 /* image */
 .hero-bg img {
-  width: 100%;
+  width: 150%;
   height: 420px;
   object-fit: cover;
   display: block;
