@@ -1,100 +1,64 @@
-/* ✅ MAIN WRAPPER */
 .featured-wrapper {
   position: relative;
-  width: 100%;
   border-radius: 16px;
   overflow: hidden;
 }
 
-/* ✅ IMAGE */
-.featured-image img {
+/* IMAGE */
+.featured-bg img {
   width: 100%;
   height: 420px;
   object-fit: cover;
   display: block;
 }
 
-/* ✅ DARK GRADIENT OVERLAY */
-.featured-wrapper::after {
+/* ✅ LIGHT OVERLAY */
+.featured-bg::after {
   content: '';
   position: absolute;
   inset: 0;
   background: linear-gradient(
     to right,
-    rgba(0,0,0,0.85) 25%,
-    rgba(0,0,0,0.6) 50%,
-    rgba(0,0,0,0.2) 75%,
-    rgba(0,0,0,0) 100%
+    rgba(0,0,0,0.4),
+    rgba(0,0,0,0.1),
+    transparent
   );
+  z-index: 1;
 }
 
-/* ✅ CONTENT POSITION */
+/* ✅ TEXT ABOVE OVERLAY */
 .featured-content {
   position: absolute;
   top: 50%;
-  left: 50px;
+  left: 40px;
   transform: translateY(-50%);
-  max-width: 420px;
+  z-index: 2;  /* ✅ THIS is why text was not visible */
   color: #fff;
-  z-index: 2;
+  max-width: 350px;
 }
 
-/* ✅ TITLE */
+/* TEXT */
 .featured-content h2 {
-  font-size: 40px;
-  margin-bottom: 12px;
-  font-weight: 700;
+  font-size: 34px;
+  margin-bottom: 10px;
 }
 
-/* ✅ TAGLINE (accent color) */
 .featured-tagline {
   color: #00d4ff;
-  font-size: 18px;
-  margin-bottom: 14px;
+  margin-bottom: 10px;
 }
 
-/* ✅ DESCRIPTION */
 .featured-desc {
   color: #ddd;
-  line-height: 1.5;
-  margin-bottom: 22px;
+  margin-bottom: 16px;
 }
 
-/* ✅ CTA BUTTONS */
+/* BUTTONS */
 .featured-cta a {
-  display: inline-block;
-  margin-right: 12px;
-  padding: 10px 20px;
-  border-radius: 10px;
-  text-decoration: none;
+  margin-right: 10px;
+  padding: 10px 16px;
+  border-radius: 8px;
   background: #7b2fff;
   color: #fff;
-  font-size: 15px;
-  transition: 0.3s;
-}
-
-.featured-cta a:hover {
-  background: #00d4ff;
-  color: #000;
-}
-
-/* ✅ OPTIONAL: subtle glow effect */
-.featured-cta a {
-  box-shadow: 0 0 10px rgba(123,47,255,0.4);
-}
-
-/* ✅ RESPONSIVE */
-@media (max-width: 768px) {
-  .featured-image img {
-    height: 320px;
-  }
-
-  .featured-content {
-    left: 20px;
-    max-width: 90%;
-  }
-
-  .featured-content h2 {
-    font-size: 28px;
-  }
+  text-decoration: none;
 }
