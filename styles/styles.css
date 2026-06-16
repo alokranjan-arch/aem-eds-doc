@@ -329,42 +329,40 @@ main .section.highlight {
 
 
 /* =========================================
-   ✅ ROOT (CLEAN BASE)
+   ✅ ROOT
 ========================================= */
 
 :root {
-  --background-color: #bfc2c7;  /* neutral base */
+  --background-color: #bfc2c7;
   --text-color: #131313;
   --link-color: #3b63fb;
   --link-hover-color: #1d3ecf;
 }
 
 /* =========================================
-   ✅ BODY BACKGROUND (FINAL BALANCE)
+   ✅ BODY BACKGROUND
 ========================================= */
 
 body {
   margin: 0;
 
-  /* ✅ Mild grey gradient (very subtle, no noise) */
   background: linear-gradient(
     180deg,
-    #d3d6da 0%,   /* slightly lighter top */
-    #bfc2c7 50%,  /* stable center */
-    #a8adb3 100%  /* slightly deeper bottom */
+    #d3d6da 0%,
+    #bfc2c7 50%,
+    #a8adb3 100%
   );
 
   color: var(--text-color);
   font-family: var(--body-font-family);
 }
 
-/* keep Franklin behavior */
 body.appear {
   display: block;
 }
 
 /* =========================================
-   ✅ REMOVE ALL VISUAL NOISE
+   ✅ REMOVE NOISE
 ========================================= */
 
 body::before,
@@ -373,7 +371,7 @@ body::after {
 }
 
 /* =========================================
-   ✅ REMOVE DEFAULT LIGHT SECTIONS
+   ✅ REMOVE LIGHT SECTIONS
 ========================================= */
 
 main .section.light,
@@ -382,20 +380,9 @@ main .section.highlight {
 }
 
 /* =========================================
-   ✅ LAYOUT (CLEAN STRUCTURE)
+   ✅ GLOBAL CONTAINER SYSTEM
 ========================================= */
 
-main {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 30px 20px;
-}
-
-.block {
-  margin-bottom: 40px;
-}
-
-/* ✅ SINGLE CONTAINER SYSTEM */
 main > .section > div,
 header .header {
   max-width: 1100px;
@@ -404,12 +391,29 @@ header .header {
   box-sizing: border-box;
 }
 
-/* ✅ SPACING BETWEEN BLOCKS */
-main > .section {
-  
-margin: 0 0 24px 0;   /* ✅ only bottom spacing */
-  padding: 0;
+/* =========================================
+   ✅ FIX NAV-HERO GAP (REAL FIX)
+========================================= */
 
+header {
+  display: block;
+  margin-bottom: 24px;   /* ✅ THIS creates spacing */
 }
 
+/* =========================================
+   ✅ FIX SECTION SPACING & BLEED
+========================================= */
+
+main > .section {
+  margin: 0 0 24px 0;   /* ✅ spacing between blocks */
+  padding: 0;           /* ✅ REMOVE side padding causing grey edges */
+}
+
+/* =========================================
+   ✅ REMOVE OLD BLOCK MARGINS
+========================================= */
+
+.block {
+  margin-bottom: 0;
+}
 
