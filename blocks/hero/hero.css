@@ -1,20 +1,13 @@
-/* =========================================
-   ✅ HERO WRAPPER
-========================================= */
-
 .hero-wrapper {
   position: relative;
   border-radius: 16px;
   overflow: hidden;
   color: #fff;
 
-  width: 100%;  /* ✅ stay inside container */
+  width: 100%;
 }
 
-/* =========================================
-   ✅ BACKGROUND IMAGE
-========================================= */
-
+/* image */
 .hero-bg img {
   width: 100%;
   height: 420px;
@@ -22,94 +15,71 @@
   display: block;
 }
 
-/* =========================================
-   ✅ SOFT OVERLAY (BALANCED)
-========================================= */
-
+/* ✅ clean overlay */
 .hero-wrapper::after {
   content: '';
   position: absolute;
   inset: 0;
 
-  /* ✅ softer gradient (fix black patch issue) */
   background: linear-gradient(
     to right,
-    rgba(0,0,0,0.35) 10%,
-    rgba(0,0,0,0.15) 35%,
-    rgba(0,0,0,0.05) 55%,
-    rgba(0,0,0,0) 75%
+    rgba(0,0,0,0.35),
+    rgba(0,0,0,0.1),
+    transparent
   );
 
   z-index: 1;
 }
 
-/* =========================================
-   ✅ CONTENT (FIXED ALIGNMENT)
-========================================= */
-
+/* ✅ CRITICAL FIX (alignment) */
 .hero-content {
   position: absolute;
   top: 50%;
-  left: 20px;                      /* ✅ MUST match container padding */
+  left: 0;              /* ✅ NO OFFSET */
   transform: translateY(-50%);
 
-  max-width: 460px;
+  padding: 0 24px;      /* ✅ SAME as container */
+  max-width: 500px;
+
   z-index: 2;
 }
 
-/* =========================================
-   ✅ TEXT STYLING
-========================================= */
-
+/* text */
 .hero-content h1 {
   font-size: 36px;
   margin-bottom: 10px;
-  font-weight: 600;
 }
 
 .hero-content p {
   color: #ddd;
   margin-bottom: 12px;
-  font-size: 15px;
 }
 
 .hero-features {
   font-size: 14px;
-  margin-bottom: 18px;
   color: #00d4ff;
+  margin-bottom: 16px;
 }
 
-/* =========================================
-   ✅ CTA BUTTONS
-========================================= */
-
+/* buttons */
 .hero-cta a {
-  display: inline-block;
   margin-right: 10px;
   padding: 10px 18px;
   border-radius: 8px;
-  text-decoration: none;
-
   background: #7b2fff;
   color: #fff;
-
-  transition: all 0.25s ease;
+  text-decoration: none;
 }
 
 .hero-cta a:hover {
   background: #00d4ff;
   color: #000;
-  transform: translateY(-1px);
 }
 
-/* =========================================
-   ✅ MOBILE
-========================================= */
-
+/* mobile */
 @media (max-width: 768px) {
   .hero-content {
-    left: 20px;
-    max-width: 90%;
+    padding: 0 20px;
   }
 
   .hero-content h1 {
