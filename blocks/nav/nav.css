@@ -2,47 +2,99 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  /* ✅ DO NOT force width here */
+  width: 100%;
+
   background: #0b0b0f;
   color: #fff;
-  padding: 16px 40px;
+
+  /* ✅ match global container padding */
+  padding: 14px 20px;
+
   border-radius: 12px;
 }
 
+/* ✅ brand */
 .nav-brand {
-  font-size: 22px;
-  font-weight: bold;
+  font-size: 20px;
+  font-weight: 600;
   color: #7b2fff;
+  letter-spacing: 0.5px;
 }
 
+/* ✅ links container */
 .nav-links {
   display: flex;
-  gap: 24px;
+  align-items: center;
+  gap: 20px;
 }
 
+/* ✅ links */
 .nav-links a {
   color: #ddd;
   text-decoration: none;
-  font-size: 15px;
-  transition: 0.3s;
+  font-size: 14px;
+
+  position: relative;
+  transition: color 0.25s ease;
 }
 
+/* ✅ subtle hover effect (clean, not flashy) */
 .nav-links a:hover {
   color: #00d4ff;
 }
 
-/* mobile */
+/* ✅ underline hover (very subtle polish) */
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  height: 1px;
+  width: 0;
+  background: #00d4ff;
+  transition: width 0.25s ease;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* ✅ mobile toggle icon */
+.nav-toggle {
+  display: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* ✅ mobile */
 @media (max-width: 768px) {
+
+  .nav-wrapper {
+    padding: 14px 16px; /* ✅ slightly tighter */
+  }
+
+  .nav-toggle {
+    display: block;
+    color: #fff;
+  }
+
   .nav-links {
     display: none;
     flex-direction: column;
+    gap: 12px;
+
+    position: absolute;
+    top: 60px;
+    right: 20px;
+
+    background: #111;
+    padding: 12px 16px;
+    border-radius: 10px;
   }
 
   .nav-links.active {
     display: flex;
-  }
-
-  .nav-toggle {
-    cursor: pointer;
-    font-size: 18px;
   }
 }
