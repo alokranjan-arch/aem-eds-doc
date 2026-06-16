@@ -15,8 +15,8 @@
   /* ✅ fixes grey edge */
   overflow: hidden;
   box-shadow: none;
-
-  padding-bottom: 100px;   /* ✅ gap between nav & hero */
+  max-height: 5px;
+  padding-bottom: 16px;   /* ✅ gap between nav & hero */
 }
 
 /* brand */
