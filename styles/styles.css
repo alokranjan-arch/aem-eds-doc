@@ -333,7 +333,7 @@ main .section.highlight {
 ========================================= */
 
 :root {
-  --background-color: #bfc2c7;   /* ✅ soft cool grey */
+  --background-color: #656564;   /* ✅ soft cool grey */
   --text-color: #131313;
   --link-color: #3b63fb;
   --link-hover-color: #1d3ecf;
