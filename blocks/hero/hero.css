@@ -2,11 +2,8 @@
   position: relative;
   border-radius: 16px;
   overflow: hidden;
-  color: #fff;
-
-  width: 100%;
+  display: block;   /* ✅ prevents rendering gaps */
 }
-
 /* image */
 .hero-bg img {
   width: 100%;
