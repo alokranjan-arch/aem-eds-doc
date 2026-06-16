@@ -1,69 +1,100 @@
-/* ✅ wrapper */
+/* ✅ MAIN WRAPPER */
 .featured-wrapper {
-  display: flex;
-  gap: 30px;
-  align-items: center;
-  background: #0b0b0f;
+  position: relative;
+  width: 100%;
   border-radius: 16px;
-  padding: 24px;
-  color: #fff;
+  overflow: hidden;
 }
 
-/* ✅ image side */
-.featured-image {
-  flex: 1;
-}
-
+/* ✅ IMAGE */
 .featured-image img {
   width: 100%;
-  height: auto;
-  border-radius: 12px;
+  height: 420px;
+  object-fit: cover;
+  display: block;
 }
 
-/* ✅ content side */
+/* ✅ DARK GRADIENT OVERLAY */
+.featured-wrapper::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(0,0,0,0.85) 25%,
+    rgba(0,0,0,0.6) 50%,
+    rgba(0,0,0,0.2) 75%,
+    rgba(0,0,0,0) 100%
+  );
+}
+
+/* ✅ CONTENT POSITION */
 .featured-content {
-  flex: 1;
+  position: absolute;
+  top: 50%;
+  left: 50px;
+  transform: translateY(-50%);
+  max-width: 420px;
+  color: #fff;
+  z-index: 2;
 }
 
-/* title */
+/* ✅ TITLE */
 .featured-content h2 {
-  font-size: 30px;
-  margin-bottom: 10px;
+  font-size: 40px;
+  margin-bottom: 12px;
+  font-weight: 700;
 }
 
-/* tagline */
+/* ✅ TAGLINE (accent color) */
 .featured-tagline {
   color: #00d4ff;
-  font-size: 16px;
-  margin-bottom: 10px;
+  font-size: 18px;
+  margin-bottom: 14px;
 }
 
-/* description */
+/* ✅ DESCRIPTION */
 .featured-desc {
-  color: #ccc;
-  margin-bottom: 20px;
+  color: #ddd;
+  line-height: 1.5;
+  margin-bottom: 22px;
 }
 
-/* ✅ CTA buttons */
+/* ✅ CTA BUTTONS */
 .featured-cta a {
   display: inline-block;
-  margin-right: 10px;
-  padding: 10px 16px;
-  border-radius: 8px;
+  margin-right: 12px;
+  padding: 10px 20px;
+  border-radius: 10px;
   text-decoration: none;
-  font-size: 14px;
   background: #7b2fff;
   color: #fff;
+  font-size: 15px;
   transition: 0.3s;
 }
 
 .featured-cta a:hover {
   background: #00d4ff;
+  color: #000;
 }
 
-/* ✅ responsive */
+/* ✅ OPTIONAL: subtle glow effect */
+.featured-cta a {
+  box-shadow: 0 0 10px rgba(123,47,255,0.4);
+}
+
+/* ✅ RESPONSIVE */
 @media (max-width: 768px) {
-  .featured-wrapper {
-    flex-direction: column;
+  .featured-image img {
+    height: 320px;
+  }
+
+  .featured-content {
+    left: 20px;
+    max-width: 90%;
+  }
+
+  .featured-content h2 {
+    font-size: 28px;
   }
 }
