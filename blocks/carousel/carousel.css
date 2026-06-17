@@ -1,10 +1,11 @@
 .carousel-wrapper {
   position: relative;
   width: 100%;
-  margin-top: 16px;
+  margin-top: 30px;
   overflow: visible;
 }
 
+/* viewport */
 .carousel-viewport {
   overflow: hidden;
   border-radius: 16px;
@@ -14,6 +15,8 @@
 .carousel-track {
   display: flex;
   transition: transform 0.5s ease;
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 /* cards */
@@ -30,6 +33,7 @@
   overflow: hidden;
 }
 
+/* image */
 .carousel-img img {
   width: 100%;
   height: 230px;
@@ -49,6 +53,7 @@
   );
 }
 
+/* text */
 .carousel-content {
   position: absolute;
   bottom: 16px;
@@ -68,7 +73,7 @@
   color: #00d4ff;
 }
 
-/* arrows outside */
+/* arrows aligned to edges */
 .carousel-arrow {
   position: absolute;
   top: 50%;
@@ -76,21 +81,28 @@
   background: rgba(15,15,20,0.9);
   color: #fff;
   border: none;
-  padding: 12px 14px;
+  padding: 10px 12px;
   font-size: 18px;
-  border-radius: 10px;
+  border-radius: 8px;
   cursor: pointer;
   z-index: 10;
-  transition: 0.25s;
+  transition: 0.2s;
 }
 
-.carousel-prev { left: -50px; }
-.carousel-next { right: -50px; }
+/* precise border alignment */
+.carousel-prev {
+  left: 0;
+  transform: translate(-120%, -50%);
+}
+
+.carousel-next {
+  right: 0;
+  transform: translate(120%, -50%);
+}
 
 .carousel-arrow:hover {
   background: #00d4ff;
   color: #000;
-  transform: translateY(-50%) scale(1.05);
 }
 
 /* dots */
@@ -126,7 +138,13 @@
     height: 200px;
   }
 
-  /* bring arrows inside */
-  .carousel-prev { left: 8px; }
-  .carousel-next { right: 8px; }
+  .carousel-prev {
+    left: 8px;
+    transform: translate(0, -50%);
+  }
+
+  .carousel-next {
+    right: 8px;
+    transform: translate(0, -50%);
+  }
 }
