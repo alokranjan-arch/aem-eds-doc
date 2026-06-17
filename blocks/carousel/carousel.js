@@ -40,7 +40,7 @@ export default function decorate(block) {
 
   const total = items.length;
 
-  // clones for infinite loop
+  // clones for seamless loop
   track.prepend(items[total - 1].cloneNode(true));
   track.append(items[0].cloneNode(true));
 
@@ -64,45 +64,45 @@ export default function decorate(block) {
     });
   }
 
-  function move() {
-    track.style.transition = '0.5s ease';
+  function move(withTransition = true) {
+    track.style.transition = withTransition ? 'transform 0.5s ease' : 'none';
     track.style.transform = `translateX(-${index * 50}%)`;
     updateDots();
   }
 
   function nextSlide() {
     index++;
-    move();
+    move(true);
   }
 
   function prevSlide() {
     index--;
-    move();
+    move(true);
   }
 
   track.addEventListener('transitionend', () => {
+
     if (index === 0) {
-      track.style.transition = 'none';
       index = total;
-      track.style.transform = `translateX(-${index * 50}%)`;
+      requestAnimationFrame(() => move(false));
     }
 
     if (index === total + 1) {
-      track.style.transition = 'none';
       index = 1;
-      track.style.transform = `translateX(-${index * 50}%)`;
+      requestAnimationFrame(() => move(false));
     }
   });
 
-  // dots per item
+  // dots (per item)
   for (let i = 0; i < total; i++) {
     const dot = document.createElement('span');
     dot.className = 'carousel-dot';
+
     if (i === 0) dot.classList.add('active');
 
     dot.onclick = () => {
       index = i + 1;
-      move();
+      move(true);
     };
 
     dots.append(dot);
@@ -115,8 +115,18 @@ export default function decorate(block) {
   wrapper.append(prev, viewport, next, dots);
   block.replaceChildren(wrapper);
 
-  move();
+  // initial position
+  move(false);
 
-  // autoplay
-  setInterval(nextSlide, 3500);
+  // autoplay (stable)
+  let interval = setInterval(nextSlide, 3500);
+
+  // pause on hover (premium behavior)
+  wrapper.addEventListener('mouseenter', () => {
+    clearInterval(interval);
+  });
+
+  wrapper.addEventListener('mouseleave', () => {
+    interval = setInterval(nextSlide, 3500);
+  });
 }
