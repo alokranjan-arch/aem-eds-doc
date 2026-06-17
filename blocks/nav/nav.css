@@ -2,34 +2,23 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   width: 100%;
-
   background: #0b0b0f;
   color: #fff;
-
   padding: 16px 0;
-
   border-radius: 12px;
-
-  /* ✅ fixes grey edge */
   overflow: hidden;
-  box-shadow: none;
-  
-  padding-bottom: 16px;   /* ✅ gap between nav & hero */
 }
 
-/* brand */
 .nav-brand {
   font-size: 20px;
   font-weight: 600;
   color: #7b2fff;
 }
 
-/* links */
 .nav-links {
   display: flex;
-    margin-left: 60px;
+  margin-left: 60px;
   gap: 20px;
 }
 
@@ -41,4 +30,10 @@
 
 .nav-links a:hover {
   color: #00d4ff;
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
 }
