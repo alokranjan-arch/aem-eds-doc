@@ -1,29 +1,31 @@
 /* =========================================
-   ✅ WRAPPER (CENTERED, NOT FULL WIDTH)
+   ✅ WRAPPER (CENTERED, COMPACT)
 ========================================= */
 
 .comparison-wrapper {
-  max-width: 700px;         /* ✅ LIMIT WIDTH */
-  margin: 0 auto;           /* ✅ CENTER */
+  max-width: 640px;        /* ✅ NOT FULL WIDTH */
+  margin: 0 auto;
 
   display: flex;
   flex-direction: column;
-  gap: 18px;
-
-  background: #0b0b0f;
-  padding: 24px;
-  border-radius: 16px;
 }
 
 /* =========================================
-   ✅ ROW (TRUE 2-COLUMN INSIDE FIXED WIDTH)
+   ✅ ROW
 ========================================= */
 
 .comparison-row {
   display: grid;
-  grid-template-columns: 180px 1fr;   /* ✅ CONTROLLED COLUMN WIDTH */
-  gap: 24px;
-  align-items: start;
+  grid-template-columns: 150px 1fr;   /* ✅ CONTROL WIDTH */
+  gap: 20px;
+
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
+/* last row */
+.comparison-row:last-child {
+  border-bottom: none;
 }
 
 /* =========================================
@@ -32,8 +34,8 @@
 
 .comparison-feature {
   font-weight: 600;
-  font-size: 15px;
-  color: #fff;
+  font-size: 14px;
+  color: #222;
 }
 
 /* =========================================
@@ -42,21 +44,8 @@
 
 .comparison-detail {
   font-size: 14px;
-  color: #cfcfcf;
+  color: #555;
   line-height: 1.5;
-}
-
-/* =========================================
-   ✅ CLEAN DIVIDER (SUBTLE)
-========================================= */
-
-.comparison-row {
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-  padding-bottom: 12px;
-}
-
-.comparison-row:last-child {
-  border-bottom: none;
 }
 
 /* =========================================
