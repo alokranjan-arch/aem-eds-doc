@@ -326,26 +326,16 @@ main .section.highlight {
 
 
 
-/* =========================================
-   ✅ ROOT (FINAL CLEAN SYSTEM)
-========================================= */
-
 :root {
-  --background-color: #a8adb3;   /* ✅ FINAL COLOR */
+  --background-color: #a8adb3;
   --text-color: #131313;
   --link-color: #3b63fb;
   --link-hover-color: #1d3ecf;
 }
 
-/* =========================================
-   ✅ BODY (NO GRADIENT)
-========================================= */
-
 body {
   margin: 0;
-
-  background: #a8adb3;   /* ✅ SINGLE COLOR EVERYWHERE */
-
+  background: #a8adb3;
   color: var(--text-color);
   font-family: var(--body-font-family);
 }
@@ -354,22 +344,16 @@ body.appear {
   display: block;
 }
 
-/* =========================================
-   ✅ REMOVE DEFAULT AEM CONFLICTS
-========================================= */
-
+/* remove default spacing issues */
 main > div {
-  margin: 0 !important;   /* ✅ remove bleed */
+  margin: 0 !important;
 }
 
 main > .section:first-of-type {
   margin-top: 0 !important;
 }
 
-/* =========================================
-   ✅ GLOBAL CONTAINER SYSTEM
-========================================= */
-
+/* main container alignment */
 main > .section > div,
 header .header {
   max-width: 1100px;
@@ -378,81 +362,17 @@ header .header {
   box-sizing: border-box;
 }
 
-/* =========================================
-   ✅ NAV → HERO GAP
-========================================= */
-
+/* layout spacing */
 main {
-  margin-top: 24px;   /* ✅ clean spacing */
+  margin-top: 24px;
   padding: 30px 0;
 }
-
-/* =========================================
-   ✅ SECTION SPACING
-========================================= */
 
 main > .section {
   margin-bottom: 24px;
   padding: 0;
-  background: transparent;
 }
-
-/* =========================================
-   ✅ BLOCK RESET
-========================================= */
 
 .block {
   margin-bottom: 0;
-}
-
-/* =========================================
-   ✅ HERO (EXACT SAME BACKGROUND)
-========================================= */
-
-.hero-wrapper {
-  position: relative;
-  border-radius: 16px;
-  overflow: hidden;
-
-  width: 100%;
-  height: 420px;
-
-  background: #a8adb3;   /* ✅ EXACT MATCH */
-}
-
-/* =========================================
-   ✅ HERO IMAGE (CLEAN)
-========================================= */
-
-.hero-bg img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-/* =========================================
-   ✅ REMOVE ALL OVERLAY EFFECTS
-========================================= */
-
-.hero-wrapper::before,
-.hero-wrapper::after {
-  display: none;
-}
-
-/* =========================================
-   ✅ HERO CONTENT
-========================================= */
-
-.hero-content {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-
-  left: 24px;
-  right: 24px;
-
-  max-width: 500px;
-  z-index: 2;
-  color: white;
 }
