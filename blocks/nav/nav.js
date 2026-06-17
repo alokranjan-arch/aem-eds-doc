@@ -1,57 +1,48 @@
-import { createOptimizedPicture } from '../../scripts/aem.js';
-
 export default function decorate(block) {
-  const wrapper = document.createElement('div');
-  wrapper.className = 'nav-wrapper';
-
+  // get all rows
   const rows = [...block.children];
 
   let brand = '';
-  const links = [];
+  let links = '';
 
-  // ✅ Parse rows (same pattern as profile)
   rows.forEach((row) => {
     const cells = row.children;
+    if (cells.length < 2) return;
 
     const key = cells[0]?.textContent.trim().toLowerCase();
+    const valueHTML = cells[1]?.innerHTML;
 
-    if (key === 'brand') {
-      brand = cells[1]?.textContent;
-    }
-
-    if (key === 'links') {
-      for (let i = 1; i < cells.length; i++) {
-        const text = cells[i]?.textContent.trim();
-        if (text) links.push(text);
-      }
-    }
+    if (key === 'brand') brand = valueHTML;
+    if (key === 'links') links = valueHTML;
   });
 
-  // ✅ Create structure
+  // ✅ create wrapper
   const nav = document.createElement('div');
-  nav.className = 'nav';
+  nav.className = 'nav-wrapper';
 
-  const brandEl = document.createElement('div');
-  brandEl.className = 'nav-brand';
-  brandEl.textContent = brand;
+  // ✅ brand
+  const brandDiv = document.createElement('div');
+  brandDiv.className = 'nav-brand';
+  brandDiv.innerHTML = brand || 'Titan Gaming';
 
-  const linksWrapper = document.createElement('div');
-  linksWrapper.className = 'nav-links';
+  // ✅ links container
+  const linksDiv = document.createElement('div');
+  linksDiv.className = 'nav-links';
+  linksDiv.innerHTML = links;
 
-  links.forEach((link) => {
-    const a = document.createElement('a');
-    a.textContent = link;
-    a.href = '#'; // later map real URLs if needed
-    linksWrapper.appendChild(a);
+  // ✅ mobile toggle
+  const toggle = document.createElement('div');
+  toggle.className = 'nav-toggle';
+  toggle.innerHTML = '&#9776;'; // hamburger icon
+
+  toggle.addEventListener('click', () => {
+    linksDiv.classList.toggle('active');
   });
 
-  // ✅ Build final DOM
-  nav.appendChild(brandEl);
-  nav.appendChild(toggle);
-  nav.appendChild(linksWrapper);
+  // ✅ append
+  nav.append(brandDiv, toggle, linksDiv);
 
-  wrapper.append(nav);
-
-  // ✅ Replace block (same as profile)
-  block.replaceChildren(wrapper);
+  // ✅ replace block content
+  block.textContent = '';
+  block.appendChild(nav);
 }
