@@ -1,7 +1,8 @@
 .leaders-wrapper {
   
-
-  width: 100%;
+  position: relative;
+  margin: 24px 0;
+  width: 80%;
   
   
   background: #0b0b0f;
