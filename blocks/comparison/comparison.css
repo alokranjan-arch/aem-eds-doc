@@ -1,15 +1,23 @@
 /* =========================================
-   ✅ COMPARISON WRAPPER (2-COLUMN)
+   ✅ COMPARISON WRAPPER
 ========================================= */
 
 .comparison-wrapper {
   display: grid;
   grid-template-columns: 1fr 2fr;
-  gap: 20px 40px;
+  gap: 28px 48px;
 
   background: #0b0b0f;
-  padding: 24px;
+  padding: 32px;
   border-radius: 16px;
+}
+
+/* =========================================
+   ✅ EACH ROW AS SOFT BLOCK
+========================================= */
+
+.comparison-wrapper > div {
+  padding: 18px 16px;
 }
 
 /* =========================================
@@ -18,8 +26,20 @@
 
 .comparison-feature {
   font-weight: 600;
-  color: #ffffff;
   font-size: 16px;
+  color: #ffffff;
+
+  position: relative;
+}
+
+/* subtle line under feature */
+.comparison-feature::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 2px;
+  margin-top: 8px;
+  background: #7b2fff;
 }
 
 /* =========================================
@@ -27,24 +47,32 @@
 ========================================= */
 
 .comparison-detail {
-  color: #cccccc;
   font-size: 15px;
-  line-height: 1.5;
+  color: #cfcfcf;
+  line-height: 1.6;
 }
 
 /* =========================================
-   ✅ ROW SEPARATION (CLEAN LOOK)
+   ✅ ROW SEPARATION (SOFT DIVIDERS)
 ========================================= */
 
 .comparison-feature,
 .comparison-detail {
-  padding: 10px 0;
-  border-bottom: 1px solid #222;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
 }
 
 /* remove last row border */
 .comparison-wrapper > div:nth-last-child(-n + 2) {
   border-bottom: none;
+}
+
+/* =========================================
+   ✅ HOVER POLISH (subtle, premium)
+========================================= */
+
+.comparison-wrapper > div:hover {
+  transform: translateX(4px);
+  transition: 0.2s ease;
 }
 
 /* =========================================
@@ -54,10 +82,10 @@
 @media (max-width: 768px) {
   .comparison-wrapper {
     grid-template-columns: 1fr;
-    gap: 10px;
+    gap: 12px;
   }
 
   .comparison-feature {
-    margin-top: 10px;
+    margin-top: 8px;
   }
 }
