@@ -1,0 +1,75 @@
+/* =========================================
+   ✅ WRAPPER (HORIZONTAL FLOW)
+========================================= */
+
+.testimonials-wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* =========================================
+   ✅ CARD
+========================================= */
+
+.testimonial-card {
+  background: #0b0b0f;
+  padding: 20px;
+  border-radius: 14px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  transition: 0.25s ease;
+}
+
+/* subtle lift */
+.testimonial-card:hover {
+  transform: translateY(-6px);
+}
+
+/* =========================================
+   ✅ QUOTE
+========================================= */
+
+.testimonial-quote {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #e6e6e6;
+  margin-bottom: 12px;
+}
+
+/* =========================================
+   ✅ SOURCE
+========================================= */
+
+.testimonial-source {
+  font-size: 13px;
+  color: #888;
+  font-weight: 600;
+}
+
+/* =========================================
+   ✅ OPTIONAL QUOTE STYLE
+========================================= */
+
+.testimonial-quote::before {
+  content: "“";
+  font-size: 28px;
+  color: #7b2fff;
+  margin-right: 4px;
+}
+
+/* =========================================
+   ✅ MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+  .testimonials-wrapper {
+    grid-template-columns: 1fr;
+  }
+}
