@@ -45,15 +45,6 @@ export default function decorate(block) {
     linksWrapper.appendChild(a);
   });
 
-  // ✅ Mobile toggle (interactive)
-  const toggle = document.createElement('div');
-  toggle.className = 'nav-toggle';
-  toggle.textContent = '☰';
-
-  toggle.addEventListener('click', () => {
-    linksWrapper.classList.toggle('active');
-  });
-
   // ✅ Build final DOM
   nav.appendChild(brandEl);
   nav.appendChild(toggle);
