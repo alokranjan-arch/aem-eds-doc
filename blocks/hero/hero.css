@@ -38,15 +38,62 @@
   margin: 14px 0;
 }
 
-.hero-cta a {
-  margin-right: 10px;
-  padding: 10px 18px;
-  border-radius: 8px;
-  background: #7b2fff;
-  color: #fff;
-  text-decoration: none;
+/* CTA layout */
+.hero-cta {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
+/* base button */
+.hero-cta a {
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 14px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  text-decoration: none;
+
+  transition: all 0.25s ease;
+}
+
+/* primary button */
+.hero-cta a:first-child {
+  background: #7b2fff;
+  color: #fff;
+}
+
+/* secondary button */
+.hero-cta a:last-child {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.4);
+}
+
+/* hover effects */
+.hero-cta a:first-child:hover {
+  background: #00d4ff;
+  color: #000;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+}
+
+.hero-cta a:last-child:hover {
+  border-color: #00d4ff;
+  color: #00d4ff;
+  transform: translateY(-2px);
+}
+
+/* active click feel */
+.hero-cta a:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* mobile */
 @media (max-width: 768px) {
   .hero-wrapper {
     height: 300px;
@@ -54,5 +101,14 @@
 
   .hero-content h1 {
     font-size: 26px;
+  }
+
+  .hero-cta {
+    gap: 8px;
+  }
+
+  .hero-cta a {
+    font-size: 13px;
+    padding: 9px 14px;
   }
 }
