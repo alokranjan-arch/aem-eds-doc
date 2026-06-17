@@ -1,8 +1,8 @@
 .leaders-wrapper {
-  position: relative;
-  width: 100%;
-  margin: 24px 0;
+  
 
+  width: 100%;
+  
   
   background: #0b0b0f;
   border-radius: 8px;
@@ -13,7 +13,7 @@
   content: '';
   position: absolute;
 
-  left: 44px; /* same as padding */
+  left: 24px; /* same as padding */
   top: 24px;
   bottom: 24px;
 
