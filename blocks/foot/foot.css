@@ -2,7 +2,7 @@
 .foot {
   position: relative;
   background: #0b0b0f;
-
+  margin-top: 16ps;
   border-top: 1px solid rgba(255,255,255,0.05);
 
   /* subtle top glow line */
