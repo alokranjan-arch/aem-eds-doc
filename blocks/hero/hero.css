@@ -1,6 +1,7 @@
 /* =========================================
-   ✅ HERO WRAPPER (FINAL FIX)
+   ✅ HERO WRAPPER (BLENDS WITH BACKGROUND)
 ========================================= */
+
 .hero-wrapper {
   position: relative;
   border-radius: 16px;
@@ -9,48 +10,70 @@
 
   width: 100%;
 
-  /* ✅ THIS removes grey “shadow” effect */
-
+  /* ✅ IMPORTANT: no dark background */
+  background: transparent;
 }
 
 /* =========================================
    ✅ IMAGE
 ========================================= */
+
 .hero-bg img {
-  width: 140%;
+  width: 100%;           /* ✅ FIXED (no overflow issues) */
   height: 420px;
   object-fit: cover;
   display: block;
 }
 
 /* =========================================
-   ✅ SOFT OVERLAY (BALANCED)
+   ✅ OVERLAY (SOFT + CLEAN)
 ========================================= */
+
 .hero-wrapper::after {
   content: '';
   position: absolute;
   inset: 0;
-background: linear-gradient(
+
+  background: linear-gradient(
     to right,
     rgba(0,0,0,0.35),
     rgba(0,0,0,0.1),
     rgba(0,0,0,0)
   );
-  
+
+  border-radius: 16px;
+  z-index: 1;
+}
+
+/* =========================================
+   ✅ OPTIONAL: FADE INTO PAGE BACKGROUND
+========================================= */
+
+.hero-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0) 70%,
+    #d3d6da 100%   /* ✅ matches your global background */
+  );
 
   z-index: 1;
 }
 
 /* =========================================
-   ✅ CONTENT (ALIGNED WITH NAV)
+   ✅ CONTENT
 ========================================= */
+
 .hero-content {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
 
-  left: 24px;          /* ✅ SAME as container */
-  right: 24px;         /* ✅ keeps balance */
+  left: 24px;
+  right: 24px;
 
   max-width: 500px;
   z-index: 2;
@@ -59,6 +82,7 @@ background: linear-gradient(
 /* =========================================
    ✅ TEXT
 ========================================= */
+
 .hero-content h1 {
   font-size: 36px;
   margin-bottom: 10px;
@@ -80,6 +104,7 @@ background: linear-gradient(
 /* =========================================
    ✅ CTA
 ========================================= */
+
 .hero-cta a {
   display: inline-block;
   margin-right: 10px;
@@ -101,6 +126,7 @@ background: linear-gradient(
 /* =========================================
    ✅ MOBILE
 ========================================= */
+
 @media (max-width: 768px) {
   .hero-content {
     left: 20px;
