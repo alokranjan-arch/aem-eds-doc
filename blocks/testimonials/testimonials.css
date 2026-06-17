@@ -5,7 +5,7 @@
 .testimonials-wrapper {
   max-width: 900px;          /* ✅ controlled width */
   margin: 0 auto;
-
+  margin-top: 16px;
   display: flex;             /* ✅ FIX alignment issue */
   justify-content: center;
   gap: 24px;
