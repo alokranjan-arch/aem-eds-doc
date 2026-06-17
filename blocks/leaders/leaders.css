@@ -1,32 +1,34 @@
 /* =========================================
-   ✅ WRAPPER (PREMIUM GLASS PANEL)
+   ✅ WRAPPER (BALANCED DARK GLASS PANEL)
 ========================================= */
 
 .leaders-wrapper {
-  max-width: 700px;
-  margin: 50px auto;
+  max-width: 680px;
+  width: 100%;
+  margin: 40px auto;
 
-  padding: 24px;
+  padding: 22px;
 
-  /* ✅ rich dark panel */
-  background: rgba(10, 10, 18, 0.78);
+  /* ✅ PREMIUM BALANCED BACKGROUND (NOT TOO DARK) */
+  background: rgba(18, 18, 28, 0.58);
 
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(6px);
 
-  border-radius: 18px;
+  border-radius: 16px;
 
-  border: 1px solid rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.06);
 
-  /* subtle elevation */
   box-shadow:
-    0 10px 30px rgba(0,0,0,0.25),
-    inset 0 1px 0 rgba(255,255,255,0.04);
+    0 8px 24px rgba(0,0,0,0.18),
+    inset 0 1px 0 rgba(255,255,255,0.03);
 
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 18px;
 
   position: relative;
+
+  box-sizing: border-box;
 }
 
 /* =========================================
@@ -37,15 +39,16 @@
   content: '';
   position: absolute;
 
-  left: 42px;
-  top: 24px;
-  bottom: 24px;
+  left: 40px;
+  top: 20px;
+  bottom: 20px;
 
   width: 2px;
 
+  /* ✅ visible but subtle */
   background: linear-gradient(
     to bottom,
-    rgba(123,47,255,0.25),
+    rgba(123,47,255,0.35),
     rgba(255,255,255,0.08)
   );
 }
@@ -57,17 +60,16 @@
 .leader-item {
   display: grid;
   grid-template-columns: 40px 1fr;
-  gap: 16px;
+  gap: 14px;
 
   align-items: start;
   position: relative;
 
-  padding: 6px 0;
+  padding: 8px 0;
 
   transition: transform 0.2s ease;
 }
 
-/* subtle lift */
 .leader-item:hover {
   transform: translateX(3px);
 }
@@ -77,11 +79,10 @@
 ========================================= */
 
 .leader-rank {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 700;
 
-  color: #cbb6ff;
-
+  color: #d2c2ff;       /* ✅ brighter for visibility */
   letter-spacing: 1px;
 
   position: relative;
@@ -89,7 +90,7 @@
 }
 
 /* =========================================
-   ✅ DOT MARKER (PREMIUM GLOW)
+   ✅ DOT MARKER (VISIBLE + SOFT GLOW)
 ========================================= */
 
 .leader-rank::after {
@@ -99,19 +100,16 @@
   top: 6px;
   left: 50%;
 
-  width: 9px;
-  height: 9px;
+  width: 8px;
+  height: 8px;
 
   background: #7b2fff;
-
   border-radius: 50%;
 
   transform: translateX(-50%);
 
-  /* ✅ glow */
   box-shadow:
-    0 0 6px rgba(123,47,255,0.6),
-    0 0 12px rgba(123,47,255,0.3);
+    0 0 6px rgba(123,47,255,0.55);
 }
 
 /* =========================================
@@ -123,19 +121,20 @@
   flex-direction: column;
 }
 
-/* name */
+/* ✅ NAME */
 .leader-name {
   font-weight: 600;
   font-size: 15px;
-  color: #f5f5f7;
+
+  color: #f2f2f5;   /* ✅ HIGH CONTRAST */
 }
 
-/* achievement */
+/* ✅ ACHIEVEMENT */
 .leader-achievement {
   font-size: 13px;
-  color: #f5f5f7;
+  color: #c9c9cf;   /* ✅ readable secondary */
 
-  margin-top: 5px;
+  margin-top: 4px;
 
   opacity: 0;
   transform: translateY(6px);
@@ -152,18 +151,16 @@
   transform: translateY(0);
 }
 
-/* highlight name slightly */
 .leader-item:hover .leader-name {
   color: #ffffff;
 }
 
-/* dot react */
 .leader-item:hover .leader-rank::after {
-  transform: translateX(-50%) scale(1.25);
+  transform: translateX(-50%) scale(1.2);
 }
 
 /* =========================================
-   ✅ DIVIDER (VERY SUBTLE)
+   ✅ SUBTLE SEPARATION LINE
 ========================================= */
 
 .leader-item:not(:last-child)::after {
@@ -172,7 +169,7 @@
 
   left: 40px;
   right: 0;
-  bottom: -8px;
+  bottom: -6px;
 
   height: 1px;
   background: rgba(255,255,255,0.05);
@@ -185,10 +182,11 @@
 @media (max-width: 768px) {
   .leaders-wrapper {
     max-width: 100%;
-    padding: 20px;
+    padding: 18px;
   }
 
   .leader-item {
     grid-template-columns: 30px 1fr;
+    gap: 10px;
   }
 }
