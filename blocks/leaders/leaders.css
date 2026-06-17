@@ -1,14 +1,37 @@
 /* =========================================
-   ✅ WRAPPER
+   ✅ WRAPPER (SOFT PANEL)
 ========================================= */
 
 .leaders-wrapper {
   max-width: 680px;
-  margin: 0 auto;
+  margin: 40px auto;
+
+  padding: 20px 20px;
+
+  background: rgba(0, 0, 0, 0.03); /* ✅ subtle separation */
+  border-radius: 14px;
 
   display: flex;
   flex-direction: column;
   gap: 18px;
+
+  position: relative;
+}
+
+/* =========================================
+   ✅ VERTICAL TIMELINE LINE
+========================================= */
+
+.leaders-wrapper::before {
+  content: '';
+  position: absolute;
+
+  left: 40px;
+  top: 20px;
+  bottom: 20px;
+
+  width: 1px;
+  background: rgba(0,0,0,0.1);
 }
 
 /* =========================================
@@ -17,34 +40,46 @@
 
 .leader-item {
   display: grid;
-  grid-template-columns: 50px 1fr;
-  align-items: center;
+  grid-template-columns: 40px 1fr;
+  gap: 16px;
 
-  padding: 10px 0;
-
-  border-bottom: 1px solid rgba(0,0,0,0.08);
+  align-items: start;
   position: relative;
 }
 
 /* =========================================
-   ✅ RANK
+   ✅ RANK DOT
 ========================================= */
 
 .leader-rank {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 700;
   color: #7b2fff;
-  opacity: 0.9;
+
+  position: relative;
+  z-index: 2;
+}
+
+/* dot marker */
+.leader-rank::after {
+  content: '';
+  position: absolute;
+
+  top: 6px;
+  left: 50%;
+
+  width: 8px;
+  height: 8px;
+
+  background: #7b2fff;
+  border-radius: 50%;
+
+  transform: translateX(-50%);
 }
 
 /* =========================================
    ✅ TEXT
 ========================================= */
-
-.leader-text {
-  display: flex;
-  flex-direction: column;
-}
 
 .leader-name {
   font-weight: 600;
@@ -56,14 +91,15 @@
   font-size: 13px;
   color: #555;
 
+  margin-top: 4px;
+
   opacity: 0;
   transform: translateY(6px);
-
   transition: all 0.25s ease;
 }
 
 /* =========================================
-   ✅ HOVER EFFECT (PREMIUM REVEAL)
+   ✅ HOVER INTERACTION
 ========================================= */
 
 .leader-item:hover .leader-achievement {
@@ -71,26 +107,8 @@
   transform: translateY(0);
 }
 
-/* subtle highlight */
-.leader-item:hover .leader-name {
-  color: #000;
-}
-
-/* animated line */
-.leader-item::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50px;
-  height: 2px;
-  width: 0;
-
-  background: #7b2fff;
-  transition: width 0.3s ease;
-}
-
-.leader-item:hover::after {
-  width: calc(100% - 50px);
+.leader-item:hover .leader-rank::after {
+  transform: translateX(-50%) scale(1.2);
 }
 
 /* =========================================
