@@ -10,6 +10,7 @@
   object-fit: cover;
 }
 
+/* content */
 .featured-content {
   position: absolute;
   top: 50%;
@@ -23,13 +24,63 @@
   font-size: 34px;
 }
 
+/* ===== CTA SYSTEM (same as hero) ===== */
+
+.featured-cta {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+
+/* base */
 .featured-cta a {
-  margin-right: 10px;
   padding: 10px 16px;
   border-radius: 8px;
+  font-size: 14px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+/* primary */
+.featured-cta a:first-child {
   background: #7b2fff;
   color: #fff;
 }
+
+/* secondary */
+.featured-cta a:last-child {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.4);
+}
+
+/* hover effects */
+.featured-cta a:first-child:hover {
+  background: #00d4ff;
+  color: #000;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.35);
+}
+
+.featured-cta a:last-child:hover {
+  border-color: #00d4ff;
+  color: #00d4ff;
+  transform: translateY(-2px);
+}
+
+/* click feel */
+.featured-cta a:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* ===== responsive ===== */
 
 @media (max-width: 768px) {
   .featured-bg img {
@@ -43,5 +94,10 @@
 
   .featured-content h2 {
     font-size: 24px;
+  }
+
+  .featured-cta a {
+    font-size: 13px;
+    padding: 9px 14px;
   }
 }
