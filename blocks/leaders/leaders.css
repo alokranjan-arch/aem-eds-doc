@@ -66,6 +66,15 @@
 
   transition: 0.25s ease;
 }
+.leader-rank {
+  font-size: 12px;
+  font-weight: 600;
+  color: #f5f5f7;
+  opacity: 0.6;
+}
+.leader-item:hover .leader-rank {
+  color: #00d4ff;
+}
 
 /* name */
 .leader-name {
