@@ -11,7 +11,7 @@
   /* ✅ rich dark panel */
   background: rgba(10, 10, 18, 0.78);
 
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(5px);
 
   border-radius: 18px;
 
