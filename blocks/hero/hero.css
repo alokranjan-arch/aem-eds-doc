@@ -1,59 +1,28 @@
-/* =========================================
-   ✅ HERO WRAPPER (MATCH GLOBAL BG)
-========================================= */
-
 .hero-wrapper {
   position: relative;
-  
   overflow: hidden;
   margin-top: 30px;
   width: 100%;
   height: 420px;
-
-  background: #a8adb3;  /* ✅ EXACT global top background color */
-}
-
-/* =========================================
-   ✅ IMAGE (FULL FIT)
-========================================= */
-
-.hero-bg img {
-  width: 100%;              /* ✅ NO 140% */
-  height: 100%;
-  object-fit: cover;
-  display: block;
   border-radius: 16px;
 }
 
-/* =========================================
-   ✅ REMOVE ALL OVERLAYS
-========================================= */
-
-.hero-wrapper::after,
-.hero-wrapper::before {
-  display: none;
+.hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
-
-/* =========================================
-   ✅ CONTENT
-========================================= */
 
 .hero-content {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-
   left: 24px;
   right: 24px;
-
   max-width: 500px;
-  z-index: 2;
   color: #fff;
 }
-
-/* =========================================
-   ✅ TEXT
-========================================= */
 
 .hero-content h1 {
   font-size: 36px;
@@ -62,18 +31,12 @@
 
 .hero-content p {
   color: #ddd;
-  margin-bottom: 12px;
 }
 
 .hero-features {
-  font-size: 14px;
   color: #00d4ff;
-  margin-bottom: 16px;
+  margin: 14px 0;
 }
-
-/* =========================================
-   ✅ CTA
-========================================= */
 
 .hero-cta a {
   margin-right: 10px;
@@ -82,4 +45,14 @@
   background: #7b2fff;
   color: #fff;
   text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  .hero-wrapper {
+    height: 300px;
+  }
+
+  .hero-content h1 {
+    font-size: 26px;
+  }
 }
