@@ -1,13 +1,7 @@
-/* main wrapper */
 .foot {
-  position: relative;
-  background: linear-gradient(
-    to right,
-    #0a0a0d,
-    #0b0b10
-  );
+  background: #0b0b0f;
 
-  border-top: 1px solid rgba(255,255,255,0.06);
+  border-top: 1px solid rgba(255,255,255,0.05);
 }
 
 /* container */
@@ -15,103 +9,70 @@
   max-width: 1100px;
   margin: 0 auto;
 
-  padding: 22px 24px;
+  padding: 16px 24px;
 
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 6px;
 }
 
-/* each section row */
+/* each row */
 .foot > div > div {
   display: flex;
   align-items: center;
   justify-content: space-between;
 
-  gap: 16px;
-
-  padding: 10px 0;
-
-  border-bottom: 1px solid rgba(255,255,255,0.05);
-}
-
-/* remove last border */
-.foot > div > div:last-child {
-  border-bottom: none;
+  padding: 6px 0;
 }
 
 /* left label */
 .foot > div > div > p:first-child {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
 
+  letter-spacing: 0.6px;
   text-transform: uppercase;
-  letter-spacing: 0.8px;
 
-  color: #8a8a94;
+  color: #7b7b85;
 }
 
-/* right links (as inline bar) */
+/* right links */
 .foot > div > div > p:last-child {
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-
-  font-size: 14px;
+  font-size: 13px;
   color: #cfcfd6;
+
+  display: flex;
+  gap: 14px;
+
+  white-space: nowrap;
 }
 
-/* create separator between links */
-.foot > div > div > p:last-child span {
-  opacity: 0.5;
-}
-
-/* hover */
-.foot > div > div > p:last-child:hover {
+/* link hover */
+.foot > div > div > p:last-child span:hover {
   color: #00d4ff;
 }
 
-/* subtle glow line top */
-.foot::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-
-  height: 1px;
-
-  background: linear-gradient(
-    to right,
-    transparent,
-    rgba(123,47,255,0.4),
-    transparent
-  );
-}
-
-/* bottom strip (optional premium closure) */
-.foot::after {
-  content: '';
-  display: block;
-
-  height: 28px;
+/* subtle separator between rows */
+.foot > div > div:not(:last-child) {
+  border-bottom: 1px solid rgba(255,255,255,0.04);
 }
 
 /* mobile */
 @media (max-width: 768px) {
 
   .foot > div {
-    padding: 18px 16px;
+    gap: 10px;
   }
 
   .foot > div > div {
     flex-direction: column;
     align-items: flex-start;
-    gap: 6px;
+    gap: 4px;
   }
 
   .foot > div > div > p:last-child {
+    flex-wrap: wrap;
+    white-space: normal;
     gap: 10px;
-    font-size: 13px;
   }
 }
