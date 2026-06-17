@@ -1,5 +1,6 @@
 .announcement-wrapper {
   width: 100%;
+  margin-top: 16px;
   background: linear-gradient(90deg, #0b0b0f, #1a0033);
   padding: 14px 0;
   border-radius: 12px;
