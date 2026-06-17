@@ -10,12 +10,9 @@ export default async function decorate(block) {
 
   const fragment = await loadFragment(footPath);
 
-  if (!fragment || !fragment.children.length) {
-    console.warn('Foot fragment not loaded');
-    return;
-  }
+  if (!fragment) return;
 
-  const rows = [...fragment.children];
+  const rows = [...fragment.querySelectorAll(':scope > div > div')];
 
   const wrapper = document.createElement('div');
   wrapper.className = 'foot';
@@ -27,10 +24,8 @@ export default async function decorate(block) {
     const cells = [...row.children];
     if (cells.length < 2) return;
 
-    const title = cells[0]?.textContent.trim();
-    const linksText = cells[1]?.textContent.trim();
-
-    if (!title || !linksText) return;
+    const title = cells[0].textContent.trim();
+    const linksText = cells[1].textContent.trim();
 
     const col = document.createElement('div');
     col.className = 'foot-col';
@@ -42,14 +37,12 @@ export default async function decorate(block) {
     const list = document.createElement('div');
     list.className = 'foot-links';
 
-    const links = linksText.split(',').map(l => l.trim());
-
-    links.forEach((link) => {
-      const item = document.createElement('a');
-      item.textContent = link;
-      item.href = '#';
-      item.className = 'foot-link';
-      list.appendChild(item);
+    linksText.split(',').forEach((l) => {
+      const a = document.createElement('a');
+      a.className = 'foot-link';
+      a.textContent = l.trim();
+      a.href = '#';
+      list.appendChild(a);
     });
 
     col.append(heading, list);
@@ -58,6 +51,6 @@ export default async function decorate(block) {
 
   wrapper.appendChild(container);
 
-  block.textContent = '';
+  block.innerHTML = '';
   block.appendChild(wrapper);
 }
