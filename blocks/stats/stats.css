@@ -1,6 +1,7 @@
 .stats-wrapper {
   display: grid;
   margin-top: 16px;
+  margin-bottom: 16px;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 16px; /* slightly tighter */
 }
