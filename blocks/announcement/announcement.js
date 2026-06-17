@@ -18,7 +18,7 @@ export default function decorate(block) {
     if (key === 'highlight') highlight = value;
   });
 
-  // ✅ Build clean horizontal layout
+  
   const wrapper = document.createElement('div');
   wrapper.className = 'announcement-wrapper';
 
