@@ -32,11 +32,11 @@
 
 /* text tweaks for dark bg */
 .leader-name {
-  color: #f0f0f0;
+  color: #FFFFFF;
 }
 
 .leader-achievement {
-  color: #bfbfbf;
+  color: #FFFFFF;
 }
 
 /* =========================================
@@ -75,7 +75,7 @@
 .leader-rank {
   font-size: 13px;
   font-weight: 700;
-  color: #7b2fff;
+  color: #c6a7fa;
 
   position: relative;
   z-index: 2;
