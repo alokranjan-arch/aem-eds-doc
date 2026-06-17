@@ -10,14 +10,19 @@ export default async function decorate(block) {
 
   const fragment = await loadFragment(footPath);
 
-  block.textContent = '';
+  // ✅ safety check
+  if (!fragment || !fragment.firstElementChild) {
+    console.warn('Foot fragment not loaded');
+    return; // keep original content visible
+  }
 
   const foot = document.createElement('div');
-  foot.className = 'foot';   // ✅ use foot, not footer
+  foot.className = 'foot';
 
   while (fragment.firstElementChild) {
     foot.append(fragment.firstElementChild);
   }
 
+  block.textContent = '';
   block.append(foot);
 }
