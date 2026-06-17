@@ -1,192 +1,28 @@
-/* =========================================
-   ✅ WRAPPER (BALANCED DARK GLASS PANEL)
-========================================= */
-
 .leaders-wrapper {
-  
   width: 100%;
-  margin: 40px auto;
-
+  margin: 24px auto;
   padding: 22px;
-
-  /* ✅ PREMIUM BALANCED BACKGROUND (NOT TOO DARK) */
-  background: rgba(18, 18, 28, 0.58);
-
-  backdrop-filter: blur(6px);
-
+  background: rgba(18,18,28,0.6);
   border-radius: 16px;
-
-  border: 1px solid rgba(255,255,255,0.06);
-
-  box-shadow:
-    0 8px 24px rgba(0,0,0,0.18),
-    inset 0 1px 0 rgba(255,255,255,0.03);
-
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-
-  position: relative;
-
-  box-sizing: border-box;
 }
-
-/* =========================================
-   ✅ TIMELINE LINE
-========================================= */
-
-.leaders-wrapper::before {
-  content: '';
-  position: absolute;
-
-  left: 40px;
-  top: 20px;
-  bottom: 20px;
-
-  width: 2px;
-
-  /* ✅ visible but subtle */
-  background: linear-gradient(
-    to bottom,
-    rgba(123,47,255,0.35),
-    rgba(255,255,255,0.08)
-  );
-}
-
-/* =========================================
-   ✅ ROW
-========================================= */
 
 .leader-item {
   display: grid;
   grid-template-columns: 40px 1fr;
   gap: 14px;
-
-  align-items: start;
-  position: relative;
-
-  padding: 8px 0;
-
-  transition: transform 0.2s ease;
 }
 
-.leader-item:hover {
-  transform: translateX(3px);
-}
-
-/* =========================================
-   ✅ RANK NUMBER
-========================================= */
-
-.leader-rank {
-  font-size: 13px;
-  font-weight: 700;
-
-  color: #d2c2ff;       /* ✅ brighter for visibility */
-  letter-spacing: 1px;
-
-  position: relative;
-  z-index: 2;
-}
-
-/* =========================================
-   ✅ DOT MARKER (VISIBLE + SOFT GLOW)
-========================================= */
-
-.leader-rank::after {
-  content: '';
-  position: absolute;
-
-  top: 6px;
-  left: 50%;
-
-  width: 8px;
-  height: 8px;
-
-  background: #7b2fff;
-  border-radius: 50%;
-
-  transform: translateX(-50%);
-
-  box-shadow:
-    0 0 6px rgba(123,47,255,0.55);
-}
-
-/* =========================================
-   ✅ TEXT BLOCK
-========================================= */
-
-.leader-text {
-  display: flex;
-  flex-direction: column;
-}
-
-/* ✅ NAME */
 .leader-name {
-  font-weight: 600;
-  font-size: 15px;
-
-  color: #f2f2f5;   /* ✅ HIGH CONTRAST */
+  color: #fff;
 }
 
-/* ✅ ACHIEVEMENT */
 .leader-achievement {
   font-size: 13px;
-  color: #c9c9cf;   /* ✅ readable secondary */
-
-  margin-top: 4px;
-
-  opacity: 0;
-  transform: translateY(6px);
-
-  transition: all 0.25s ease;
+  color: #ccc;
 }
-
-/* =========================================
-   ✅ HOVER REVEAL
-========================================= */
-
-.leader-item:hover .leader-achievement {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.leader-item:hover .leader-name {
-  color: #ffffff;
-}
-
-.leader-item:hover .leader-rank::after {
-  transform: translateX(-50%) scale(1.2);
-}
-
-/* =========================================
-   ✅ SUBTLE SEPARATION LINE
-========================================= */
-
-.leader-item:not(:last-child)::after {
-  content: '';
-  position: absolute;
-
-  left: 40px;
-  right: 0;
-  bottom: -6px;
-
-  height: 1px;
-  background: rgba(255,255,255,0.05);
-}
-
-/* =========================================
-   ✅ MOBILE
-========================================= */
 
 @media (max-width: 768px) {
-  .leaders-wrapper {
-    max-width: 100%;
-    padding: 18px;
-  }
-
   .leader-item {
     grid-template-columns: 30px 1fr;
-    gap: 10px;
   }
 }
