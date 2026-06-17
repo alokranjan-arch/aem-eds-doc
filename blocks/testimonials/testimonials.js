@@ -4,13 +4,18 @@ export default function decorate(block) {
   const wrapper = document.createElement('div');
   wrapper.className = 'testimonials-wrapper';
 
-  rows.slice(1).forEach((row) => {
+  rows.forEach((row) => {
     const cells = [...row.children];
 
     const quote = cells[0]?.textContent.trim();
     const source = cells[1]?.textContent.trim();
 
-    if (!quote || !source) return;
+    // ✅ skip only empty or header-like rows
+    if (
+      !quote ||
+      !source ||
+      quote.toLowerCase() === 'quote'
+    ) return;
 
     const card = document.createElement('div');
     card.className = 'testimonial-card';
