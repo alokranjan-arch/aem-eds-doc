@@ -1,64 +1,22 @@
-/* =========================================
-   ✅ WRAPPER (CENTERED, COMPACT)
-========================================= */
-
 .comparison-wrapper {
-  max-width: 640px;        /* ✅ NOT FULL WIDTH */
+  max-width: 640px;
   margin: 0 auto;
-
-  display: flex;
-  flex-direction: column;
+  width: 100%;
 }
-
-/* =========================================
-   ✅ ROW
-========================================= */
 
 .comparison-row {
   display: grid;
-  grid-template-columns: 150px 1fr;   /* ✅ CONTROL WIDTH */
+  grid-template-columns: 150px 1fr;
   gap: 20px;
-
   padding: 10px 0;
-  border-bottom: 1px solid rgba(0,0,0,0.08);
 }
-
-/* last row */
-.comparison-row:last-child {
-  border-bottom: none;
-}
-
-/* =========================================
-   ✅ FEATURE (LEFT)
-========================================= */
 
 .comparison-feature {
   font-weight: 600;
-  font-size: 16px;
-  color: #222;
 }
-
-/* =========================================
-   ✅ DETAIL (RIGHT)
-========================================= */
-
-.comparison-detail {
-  font-size: 16px;
-  color: #222;
-  line-height: 1.5;
-}
-
-/* =========================================
-   ✅ MOBILE
-========================================= */
 
 @media (max-width: 768px) {
-  .comparison-wrapper {
-    max-width: 100%;
-  }
-
   .comparison-row {
     grid-template-columns: 1fr;
-    gap: 6px;
   }
 }
