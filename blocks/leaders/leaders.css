@@ -1,0 +1,104 @@
+/* =========================================
+   ✅ WRAPPER
+========================================= */
+
+.leaders-wrapper {
+  max-width: 680px;
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* =========================================
+   ✅ ROW
+========================================= */
+
+.leader-item {
+  display: grid;
+  grid-template-columns: 50px 1fr;
+  align-items: center;
+
+  padding: 10px 0;
+
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  position: relative;
+}
+
+/* =========================================
+   ✅ RANK
+========================================= */
+
+.leader-rank {
+  font-size: 14px;
+  font-weight: 700;
+  color: #7b2fff;
+  opacity: 0.9;
+}
+
+/* =========================================
+   ✅ TEXT
+========================================= */
+
+.leader-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.leader-name {
+  font-weight: 600;
+  font-size: 15px;
+  color: #222;
+}
+
+.leader-achievement {
+  font-size: 13px;
+  color: #555;
+
+  opacity: 0;
+  transform: translateY(6px);
+
+  transition: all 0.25s ease;
+}
+
+/* =========================================
+   ✅ HOVER EFFECT (PREMIUM REVEAL)
+========================================= */
+
+.leader-item:hover .leader-achievement {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* subtle highlight */
+.leader-item:hover .leader-name {
+  color: #000;
+}
+
+/* animated line */
+.leader-item::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50px;
+  height: 2px;
+  width: 0;
+
+  background: #7b2fff;
+  transition: width 0.3s ease;
+}
+
+.leader-item:hover::after {
+  width: calc(100% - 50px);
+}
+
+/* =========================================
+   ✅ MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+  .leaders-wrapper {
+    max-width: 100%;
+  }
+}
