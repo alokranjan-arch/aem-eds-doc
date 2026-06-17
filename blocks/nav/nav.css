@@ -29,6 +29,7 @@
 /* links */
 .nav-links {
   display: flex;
+    margin-left: 40px;
   gap: 20px;
 }
 
