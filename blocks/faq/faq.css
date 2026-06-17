@@ -1,0 +1,71 @@
+/* =========================================
+   ✅ WRAPPER (CENTERED LIKE COMPARISON)
+========================================= */
+
+.faq-wrapper {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+/* =========================================
+   ✅ ITEM
+========================================= */
+
+.faq-item {
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  padding: 12px 0;
+}
+
+/* =========================================
+   ✅ QUESTION
+========================================= */
+
+.faq-question {
+  font-weight: 600;
+  font-size: 14px;
+  color: #222;
+
+  cursor: pointer;
+  position: relative;
+
+  padding-right: 20px;
+}
+
+/* + icon */
+.faq-question::after {
+  content: '+';
+  position: absolute;
+  right: 0;
+  top: 0;
+
+  font-size: 16px;
+  color: #777;
+}
+
+/* =========================================
+   ✅ ANSWER
+========================================= */
+
+.faq-answer {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.5;
+
+  max-height: 0;
+  overflow: hidden;
+
+  transition: max-height 0.25s ease;
+  margin-top: 4px;
+}
+
+/* =========================================
+   ✅ ACTIVE STATE
+========================================= */
+
+.faq-item.active .faq-answer {
+  max-height: 120px;
+}
+
+.faq-item.active .faq-question::after {
+  content: '−';
+}
