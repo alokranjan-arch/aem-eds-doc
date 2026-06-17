@@ -1,121 +1,117 @@
-/* wrapper */
+/* main wrapper */
 .foot {
   position: relative;
-  background: #0b0b0f;
-  margin-top: 16ps;
-  border-top: 1px solid rgba(255,255,255,0.05);
+  background: linear-gradient(
+    to right,
+    #0a0a0d,
+    #0b0b10
+  );
 
-  /* subtle top glow line */
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
+  border-top: 1px solid rgba(255,255,255,0.06);
 }
 
-/* main layout */
+/* container */
 .foot > div {
   max-width: 1100px;
   margin: 0 auto;
 
-  padding: 48px 24px 32px;
+  padding: 22px 24px;
 
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 36px;
-
-  position: relative;
-}
-
-/* columns */
-.foot > div > div {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-
-  position: relative;
+  gap: 16px;
 }
 
-/* subtle vertical separators */
-.foot > div > div:not(:last-child)::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: -18px;
-  height: 100%;
-  width: 1px;
+/* each section row */
+.foot > div > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-  background: linear-gradient(
-    to bottom,
-    transparent,
-    rgba(255,255,255,0.06),
-    transparent
-  );
+  gap: 16px;
+
+  padding: 10px 0;
+
+  border-bottom: 1px solid rgba(255,255,255,0.05);
 }
 
-/* headings */
-.foot strong {
-  font-size: 12px;
-  color: #8a8a94;
+/* remove last border */
+.foot > div > div:last-child {
+  border-bottom: none;
+}
+
+/* left label */
+.foot > div > div > p:first-child {
+  font-size: 13px;
+  font-weight: 600;
 
   text-transform: uppercase;
   letter-spacing: 0.8px;
 
-  font-weight: 600;
+  color: #8a8a94;
 }
 
-/* links + text */
-.foot a,
-.foot p {
+/* right links (as inline bar) */
+.foot > div > div > p:last-child {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+
   font-size: 14px;
   color: #cfcfd6;
-
-  text-decoration: none;
-  line-height: 1.5;
-
-  transition: all 0.2s ease;
 }
 
-/* hover (premium subtle lift + color) */
-.foot a:hover {
+/* create separator between links */
+.foot > div > div > p:last-child span {
+  opacity: 0.5;
+}
+
+/* hover */
+.foot > div > div > p:last-child:hover {
   color: #00d4ff;
-  transform: translateX(3px);
 }
 
-/* spacing cleanup */
-.foot p {
-  margin: 0;
-}
-
-/* bottom divider (optional premium layer) */
-.foot::after {
+/* subtle glow line top */
+.foot::before {
   content: '';
-  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
 
   height: 1px;
-  width: 100%;
-
-  margin-top: 12px;
 
   background: linear-gradient(
     to right,
     transparent,
-    rgba(255,255,255,0.05),
+    rgba(123,47,255,0.4),
     transparent
   );
+}
+
+/* bottom strip (optional premium closure) */
+.foot::after {
+  content: '';
+  display: block;
+
+  height: 28px;
 }
 
 /* mobile */
 @media (max-width: 768px) {
 
   .foot > div {
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-    padding: 36px 16px;
+    padding: 18px 16px;
   }
 
-  .foot > div > div::after {
-    display: none;
+  .foot > div > div {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
   }
 
-  .foot a,
-  .foot p {
+  .foot > div > div > p:last-child {
+    gap: 10px;
     font-size: 13px;
   }
 }
