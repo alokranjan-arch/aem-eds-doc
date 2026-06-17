@@ -38,21 +38,14 @@ export default function decorate(block) {
     items.push(card);
   });
 
-  const cardsPerView = () => window.innerWidth <= 768 ? 1 : 2;
-  let index = 0;
+  const total = items.length;
 
-  function totalSlides() {
-    return Math.ceil(items.length / cardsPerView());
-  }
+  // clones for infinite loop
+  track.prepend(items[total - 1].cloneNode(true));
+  track.append(items[0].cloneNode(true));
 
-  function move() {
-    const perView = cardsPerView();
-    const shift = (index * 100);
-    track.style.transform = `translateX(-${shift}%)`;
-    updateDots();
-  }
+  let index = 1;
 
-  // arrows
   const prev = document.createElement('button');
   const next = document.createElement('button');
 
@@ -62,58 +55,67 @@ export default function decorate(block) {
   prev.innerHTML = '‹';
   next.innerHTML = '›';
 
+  const dots = document.createElement('div');
+  dots.className = 'carousel-dots';
+
+  function updateDots() {
+    dots.querySelectorAll('.carousel-dot').forEach((d, i) => {
+      d.classList.toggle('active', i === (index - 1 + total) % total);
+    });
+  }
+
+  function move() {
+    track.style.transition = '0.5s ease';
+    track.style.transform = `translateX(-${index * 50}%)`;
+    updateDots();
+  }
+
   function nextSlide() {
-    index = (index + 1) % totalSlides();
+    index++;
     move();
   }
 
   function prevSlide() {
-    index = (index - 1 + totalSlides()) % totalSlides();
+    index--;
     move();
+  }
+
+  track.addEventListener('transitionend', () => {
+    if (index === 0) {
+      track.style.transition = 'none';
+      index = total;
+      track.style.transform = `translateX(-${index * 50}%)`;
+    }
+
+    if (index === total + 1) {
+      track.style.transition = 'none';
+      index = 1;
+      track.style.transform = `translateX(-${index * 50}%)`;
+    }
+  });
+
+  // dots per item
+  for (let i = 0; i < total; i++) {
+    const dot = document.createElement('span');
+    dot.className = 'carousel-dot';
+    if (i === 0) dot.classList.add('active');
+
+    dot.onclick = () => {
+      index = i + 1;
+      move();
+    };
+
+    dots.append(dot);
   }
 
   next.onclick = nextSlide;
   prev.onclick = prevSlide;
 
-  // dots
-  const dots = document.createElement('div');
-  dots.className = 'carousel-dots';
-
-  function renderDots() {
-    dots.innerHTML = '';
-    for (let i = 0; i < totalSlides(); i++) {
-      const dot = document.createElement('span');
-      dot.className = 'carousel-dot';
-      if (i === index) dot.classList.add('active');
-
-      dot.onclick = () => {
-        index = i;
-        move();
-      };
-
-      dots.appendChild(dot);
-    }
-  }
-
-  function updateDots() {
-    dots.querySelectorAll('.carousel-dot').forEach((d, i) => {
-      d.classList.toggle('active', i === index);
-    });
-  }
-
-  // structure
   viewport.appendChild(track);
   wrapper.append(prev, viewport, next, dots);
   block.replaceChildren(wrapper);
 
-  renderDots();
   move();
-
-  window.addEventListener('resize', () => {
-    index = 0;
-    renderDots();
-    move();
-  });
 
   // autoplay
   setInterval(nextSlide, 3500);
