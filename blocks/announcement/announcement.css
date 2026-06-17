@@ -1,47 +1,37 @@
-
 .announcement-wrapper {
   width: 100%;
-  border-bottom: 50px;
   background: linear-gradient(90deg, #0b0b0f, #1a0033);
-
-  padding: 14px 0;    
+  padding: 14px 0;
   border-radius: 12px;
   border: 1px solid #222;
 }
 
-
 .announcement-content {
   display: flex;
-  align-items: center;
   justify-content: center;
-
   gap: 12px;
   flex-wrap: wrap;
-
-  padding: 0 24px;   
+  padding: 0 24px;
   text-align: center;
 }
-
 
 .announcement-message {
   color: #ddd;
   font-size: 15px;
 }
 
-
 .announcement-separator {
   color: #666;
 }
 
-
 .announcement-highlight {
   color: #00d4ff;
   font-weight: 600;
-  font-size: 17px;
-  letter-spacing: 0.3px;
 }
 
-
-.announcement-highlight:hover {
-  text-shadow: 0 0 6px rgba(0,212,255,0.4);
+@media (max-width: 768px) {
+  .announcement-content {
+    flex-direction: column;
+    gap: 6px;
+  }
 }
