@@ -1,15 +1,15 @@
-/* ✅ WRAPPER (no side padding conflict) */
+
 .announcement-wrapper {
   width: 100%;
   border-bottom: 50px;
   background: linear-gradient(90deg, #0b0b0f, #1a0033);
 
-  padding: 14px 0;     /* ✅ remove side padding */
+  padding: 14px 0;    
   border-radius: 12px;
   border: 1px solid #222;
 }
 
-/* ✅ INNER CONTENT (handles spacing instead) */
+
 .announcement-content {
   display: flex;
   align-items: center;
@@ -18,22 +18,22 @@
   gap: 12px;
   flex-wrap: wrap;
 
-  padding: 0 24px;   /* ✅ SAME as hero/nav */
+  padding: 0 24px;   
   text-align: center;
 }
 
-/* ✅ NORMAL TEXT */
+
 .announcement-message {
   color: #ddd;
   font-size: 15px;
 }
 
-/* ✅ SEPARATOR */
+
 .announcement-separator {
   color: #666;
 }
 
-/* ✅ HIGHLIGHT */
+
 .announcement-highlight {
   color: #00d4ff;
   font-weight: 600;
@@ -41,7 +41,7 @@
   letter-spacing: 0.3px;
 }
 
-/* ✅ SUBTLE HOVER (not flashy) */
+
 .announcement-highlight:hover {
   text-shadow: 0 0 6px rgba(0,212,255,0.4);
 }
