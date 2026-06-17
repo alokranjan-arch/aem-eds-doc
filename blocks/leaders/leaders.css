@@ -1,55 +1,98 @@
 .leaders-wrapper {
   width: 100%;
-  margin: 32px 0;
+  margin: 40px 0;
 
-  display: grid;
-  grid-template-columns: 1fr 1.2fr 1fr;
-  align-items: end;
-  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-/* base card */
-.leader-item {
+/* row for rank 1 */
+.leaders-wrapper .leader-item:nth-child(1) {
+  order: 1;
+
+  width: 260px;
+
+  padding: 22px 18px;
+  margin-bottom: 20px;
+
+  background: #0b0b0f;
+  border-radius: 16px;
+
+  border: 1px solid rgba(123,47,255,0.4);
+
+  text-align: center;
+
+  transform: translateY(-10px);
+
+  z-index: 2;
+}
+
+/* bottom row container */
+.leaders-wrapper .leader-item:nth-child(2),
+.leaders-wrapper .leader-item:nth-child(3) {
+  order: 2;
+
+  width: 220px;
+
   background: #0b0b0f;
   border-radius: 14px;
+
   padding: 18px 16px;
 
   border: 1px solid rgba(255,255,255,0.06);
 
+  text-align: center;
+}
+
+/* wrap 2 & 3 in a flex row effect */
+.leaders-wrapper {
+  position: relative;
+}
+
+/* create bottom row layout */
+.leaders-wrapper::after {
+  content: '';
+  display: block;
+}
+
+/* proper horizontal grouping */
+.leaders-wrapper {
+  gap: 0;
+}
+
+.leaders-wrapper > .leader-item:nth-child(2),
+.leaders-wrapper > .leader-item:nth-child(3) {
+  margin: 0 10px;
+}
+
+/* create horizontal row manually */
+.leaders-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-
-  text-align: center;
-
-  transition: 0.25s ease;
+  align-items: center;
 }
 
-/* CENTER (rank 1) */
-.leader-item:nth-child(1) {
-  grid-column: 2;
-  transform: translateY(-10px);
-  background: #0f0f18;
-  border-color: rgba(123,47,255,0.5);
+.leaders-wrapper .leader-item:nth-child(2),
+.leaders-wrapper .leader-item:nth-child(3) {
+  display: inline-flex;
 }
 
-/* LEFT (rank 2) */
-.leader-item:nth-child(2) {
-  grid-column: 1;
+/* fix positioning */
+.leaders-wrapper .leader-item:nth-child(2) {
+  transform: translateX(-120px);
 }
 
-/* RIGHT (rank 3) */
-.leader-item:nth-child(3) {
-  grid-column: 3;
+.leaders-wrapper .leader-item:nth-child(3) {
+  transform: translateX(120px);
 }
 
 /* rank badge */
 .leader-rank {
-  font-size: 12px;
-  font-weight: 700;
+  width: 36px;
+  height: 36px;
 
-  width: 32px;
-  height: 32px;
+  margin: 0 auto 8px;
 
   display: flex;
   align-items: center;
@@ -57,14 +100,15 @@
 
   border-radius: 50%;
 
-  margin: 0 auto;
+  font-size: 13px;
+  font-weight: 700;
 
   background: rgba(123,47,255,0.15);
   color: #7b2fff;
 }
 
-/* highlight rank 1 */
-.leader-item:nth-child(1) .leader-rank {
+/* rank 1 highlight */
+.leaders-wrapper .leader-item:nth-child(1) .leader-rank {
   background: #7b2fff;
   color: #fff;
 }
@@ -85,27 +129,30 @@
 /* hover */
 .leader-item:hover {
   transform: translateY(-6px);
-  border-color: rgba(0,212,255,0.4);
 }
 
-.leader-item:hover .leader-rank {
-  background: #00d4ff;
-  color: #000;
+.leaders-wrapper .leader-item:nth-child(2):hover {
+  transform: translateX(-120px) translateY(-6px);
+}
+
+.leaders-wrapper .leader-item:nth-child(3):hover {
+  transform: translateX(120px) translateY(-6px);
 }
 
 /* mobile */
 @media (max-width: 768px) {
 
   .leaders-wrapper {
-    grid-template-columns: 1fr;
+    flex-direction: column;
   }
 
-  .leader-item {
-    transform: none !important;
-    text-align: left;
+  .leaders-wrapper .leader-item:nth-child(2),
+  .leaders-wrapper .leader-item:nth-child(3) {
+    transform: none;
+    margin: 10px 0;
   }
 
-  .leader-rank {
-    margin: 0;
+  .leaders-wrapper .leader-item:nth-child(1) {
+    transform: none;
   }
 }
