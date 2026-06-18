@@ -10,46 +10,59 @@ export default function decorate(block) {
   let cta = '';
   let variant = '';
 
-  rows.forEach(row => {
+  // ✅ robust parsing (handles EDS formatting issues)
+  rows.forEach((row) => {
     const cells = row.children;
 
-    const key = cells[0]?.textContent.trim().toLowerCase();
+    const key = cells[0]?.textContent
+      ?.replace(/\s+/g, ' ')
+      .trim()
+      .toLowerCase();
+
     const valueHTML = cells[1]?.innerHTML;
     const valueText = cells[1]?.textContent.trim();
 
-    if (key === 'variant') variant = valueText;
-    if (key === 'background') bgImage = valueHTML;
-    if (key === 'title') title = valueText;
-    if (key === 'subtitle') subtitle = valueText;
-    if (key === 'features') features = valueText;
-    if (key === 'cta') cta = valueText;
+    if (key?.includes('variant')) variant = valueText.toLowerCase();
+    if (key?.includes('background')) bgImage = valueHTML;
+    if (key?.includes('title')) title = valueText;
+    if (key?.includes('subtitle')) subtitle = valueText;
+    if (key?.includes('features')) features = valueText;
+    if (key?.includes('cta')) cta = valueText;
   });
 
+  // ✅ DEBUG (remove later if needed)
+  console.log('Hero Variant:', variant);
+
+  // ✅ wrapper
   const wrapper = document.createElement('div');
   wrapper.className = 'hero-wrapper';
 
-  // ✅ apply variant correctly
+  // ✅ apply variant class ONLY if exists
   if (variant) {
     wrapper.classList.add(`hero-${variant}`);
   }
 
+  // ✅ background
   const bg = document.createElement('div');
   bg.className = 'hero-bg';
   bg.innerHTML = bgImage;
 
+  // ✅ optimize image
   bg.querySelectorAll('picture > img').forEach((img) => {
     img.closest('picture')?.replaceWith(
       createOptimizedPicture(img.src, img.alt, false, [{ width: '1200' }])
     );
   });
 
+  // ✅ content
   const content = document.createElement('div');
   content.className = 'hero-content';
 
-  const ctas = cta.split('/').map(c => c.trim()).filter(Boolean);
+  // ✅ CTA parsing
+  const ctas = cta.split('/').map((c) => c.trim()).filter(Boolean);
 
   const ctaHTML = ctas
-    .map(text => `<a href="#">${text}</a>`)   // ✅ fixed
+    .map((text) => `<a href="#">${text}</a>`)
     .join('');
 
   content.innerHTML = `
@@ -61,5 +74,6 @@ export default function decorate(block) {
 
   wrapper.append(bg, content);
 
+  // ✅ replace original table
   block.replaceChildren(wrapper);
 }
