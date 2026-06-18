@@ -1,6 +1,13 @@
 import { createOptimizedPicture } from '../../scripts/aem.js';
 
 export default function decorate(block) {
+  // ✅ detect variations (like "bottom")
+  const variants = [...block.classList].filter(c => c !== 'hero');
+
+  variants.forEach(v => {
+    block.classList.add(`hero-${v}`);
+  });
+
   const rows = [...block.children];
 
   let bgImage = '';
@@ -33,7 +40,7 @@ export default function decorate(block) {
   bg.className = 'hero-bg';
   bg.innerHTML = bgImage;
 
-  // optimize image (same as your pattern)
+  // ✅ optimize image
   bg.querySelectorAll('picture > img').forEach((img) => {
     img.closest('picture')?.replaceWith(
       createOptimizedPicture(img.src, img.alt, false, [{ width: '1200' }])
@@ -44,7 +51,6 @@ export default function decorate(block) {
   const content = document.createElement('div');
   content.className = 'hero-content';
 
-  // split CTA into buttons
   const ctas = cta.split('/').map(c => c.trim()).filter(Boolean);
 
   const ctaHTML = ctas
