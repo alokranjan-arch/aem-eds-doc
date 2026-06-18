@@ -1,13 +1,6 @@
 import { createOptimizedPicture } from '../../scripts/aem.js';
 
 export default function decorate(block) {
-  // ✅ detect variations (like "bottom")
-  const variants = [...block.classList].filter(c => c !== 'hero');
-
-  variants.forEach(v => {
-    block.classList.add(`hero-${v}`);
-  });
-
   const rows = [...block.children];
 
   let bgImage = '';
@@ -15,6 +8,7 @@ export default function decorate(block) {
   let subtitle = '';
   let features = '';
   let cta = '';
+  let variant = ''; // ✅ new
 
   // ✅ Parse key-value rows
   rows.forEach(row => {
@@ -22,8 +16,9 @@ export default function decorate(block) {
 
     const key = cells[0]?.textContent.trim().toLowerCase();
     const valueHTML = cells[1]?.innerHTML;
-    const valueText = cells[1]?.textContent;
+    const valueText = cells[1]?.textContent.trim();
 
+    if (key === 'variant') variant = valueText; // ✅ capture variant
     if (key === 'background') bgImage = valueHTML;
     if (key === 'title') title = valueText;
     if (key === 'subtitle') subtitle = valueText;
@@ -35,12 +30,16 @@ export default function decorate(block) {
   const wrapper = document.createElement('div');
   wrapper.className = 'hero-wrapper';
 
+  // ✅ apply variant (only if exists)
+  if (variant) {
+    wrapper.classList.add(`hero-${variant}`);
+  }
+
   // ✅ Background
   const bg = document.createElement('div');
   bg.className = 'hero-bg';
   bg.innerHTML = bgImage;
 
-  // ✅ optimize image
   bg.querySelectorAll('picture > img').forEach((img) => {
     img.closest('picture')?.replaceWith(
       createOptimizedPicture(img.src, img.alt, false, [{ width: '1200' }])
