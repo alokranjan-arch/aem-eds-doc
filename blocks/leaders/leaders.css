@@ -5,15 +5,18 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 28px;
+
+  gap: 24px; /* ✅ equal vertical spacing */
 }
 
-/* =========================
-   TOP (RANK 1)
-========================= */
+/* TOP CARD */
 .leaders-wrapper .leader-item:nth-child(1) {
-  width: 260px;
+  order: 1;
+
+  width: 240px; /* 🔧 slightly reduced for balance */
+
   padding: 22px 18px;
+  margin-bottom: 0;
 
   background: #0b0b0f;
   border-radius: 16px;
@@ -24,31 +27,14 @@
 
   transform: translateY(-8px);
   z-index: 2;
-
-  transition: all 0.25s ease;
 }
 
-/* =========================
-   BOTTOM ROW WRAPPER
-========================= */
-.leaders-wrapper::after {
-  content: '';
-}
+/* BOTTOM CARDS */
+.leaders-wrapper .leader-item:nth-child(2),
+.leaders-wrapper .leader-item:nth-child(3) {
+  order: 2;
 
-/* create proper row */
-.leaders-wrapper {
-  position: relative;
-}
-
-/* Wrap 2 & 3 using flex row */
-.leaders-wrapper {
-  --card-width: 220px;
-}
-
-/* bottom row container effect */
-.leaders-wrapper > .leader-item:nth-child(2),
-.leaders-wrapper > .leader-item:nth-child(3) {
-  width: var(--card-width);
+  width: 240px; /* ✅ SAME size as rank 1 now */
 
   background: #0b0b0f;
   border-radius: 14px;
@@ -58,103 +44,49 @@
   border: 1px solid rgba(255,255,255,0.06);
 
   text-align: center;
-
-  transition: all 0.25s ease;
 }
 
-/* ✅ create actual row */
+/* ✅ horizontal layout for 2 & 3 */
 .leaders-wrapper {
-  display: flex;
-  flex-direction: column;
-}
-
-.leaders-wrapper .bottom-row {
-  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  gap: 24px;
+}
+
+/* create proper spacing instead of transform hacks */
+.leaders-wrapper > .leader-item:nth-child(2),
+.leaders-wrapper > .leader-item:nth-child(3) {
+  margin: 0 12px; /* ✅ equal spacing */
+}
+
+/* ✅ REMOVE uneven transforms */
+.leaders-wrapper .leader-item:nth-child(2),
+.leaders-wrapper .leader-item:nth-child(3) {
+  transform: none;
 }
 
 /* =========================
-   JS will wrap 2 & 3 inside .bottom-row
-========================= */
-
-/* =========================
-   RANK BADGE
-========================= */
-.leader-rank {
-  width: 36px;
-  height: 36px;
-
-  margin: 0 auto 8px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 50%;
-
-  font-size: 13px;
-  font-weight: 700;
-
-  background: rgba(123,47,255,0.15);
-  color: #7b2fff;
-}
-
-/* highlight rank 1 */
-.leaders-wrapper .leader-item:nth-child(1) .leader-rank {
-  background: #7b2fff;
-  color: #fff;
-}
-
-/* =========================
-   TEXT
-========================= */
-.leader-name {
-  font-size: 16px;
-  font-weight: 600;
-  color: #ffffff;
-}
-
-.leader-achievement {
-  font-size: 14px;
-  color: #c9c9cf;
-}
-
-/* =========================
-   HOVER (CLEAN + CONSISTENT)
+   HOVER (clean + consistent)
 ========================= */
 .leader-item {
   transition: all 0.25s ease;
 }
 
 .leader-item:hover {
-  transform: translateY(-6px) scale(1.02);
-  border-color: rgba(123,47,255,0.6);
-  box-shadow: 0 8px 30px rgba(123,47,255,0.15);
+  transform: translateY(-6px);
+  box-shadow: 0 6px 20px rgba(123,47,255,0.15);
 }
 
 /* =========================
-   MOBILE
+   MOBILE FIX
 ========================= */
 @media (max-width: 768px) {
 
-  .leaders-wrapper {
-    gap: 20px;
-  }
-
-  .leaders-wrapper .bottom-row {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .leaders-wrapper .leader-item:nth-child(1),
   .leaders-wrapper .leader-item:nth-child(2),
   .leaders-wrapper .leader-item:nth-child(3) {
-    width: 90%;
-    max-width: 280px;
+    margin: 6px 0;
   }
 
-  .leader-item:hover {
-    transform: translateY(-4px);
+  .leaders-wrapper .leader-item:nth-child(1) {
+    transform: none;
   }
 }
