@@ -1,59 +1,93 @@
+/* ✅ Make footer section full width (override global constraint) */
+.section:has(.foot) {
+  max-width: 100%;
+  padding: 0;
+}
+
+/* ✅ Footer outer layer (full width background) */
 .foot {
-  background: #0b0b0f;
-  border-top: 1px solid rgba(255,255,255,0.05);
+  width: 100%;
+  background: radial-gradient(circle at top, #1a1a2e, #050509);
+  padding: 60px 20px;
+  color: #e6e6e6;
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* container */
-.foot .foot-container {
-  max-width: 1100px;
+/* ✅ Glow effect */
+.foot::before {
+  content: '';
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(0, 212, 255, 0.15), transparent 70%);
+  top: -150px;
+  left: -150px;
+  filter: blur(80px);
+  z-index: 0;
+}
+
+/* ✅ INNER container (matches your global width) */
+.foot .foot-inner {
+  max-width: 1200px;   /* 🔥 match your global container */
   margin: 0 auto;
-  padding: 40px 24px;
-  margin-top: 16px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 28px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 40px;
+  position: relative;
+  z-index: 1;
 }
 
-/* column */
-.foot .foot-col {
+/* ✅ Column */
+.foot .col {
   display: flex;
   flex-direction: column;
-  gap: 10px;
 }
 
-/* heading */
-.foot .foot-title {
-  font-size: 12px;
-  font-weight: 600;
-
-  color: #888; /* ✅ important */
+/* ✅ Title */
+.foot h3 {
+  font-size: 13px;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
-  letter-spacing: 0.6px;
-}
-
-/* links */
-.foot .foot-links {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.foot .foot-link {
-  font-size: 14px;
-  color: #ddd; /* ✅ important */
-  text-decoration: none;
-  transition: 0.2s;
-}
-
-.foot .foot-link:hover {
   color: #00d4ff;
+  margin-bottom: 16px;
+  position: relative;
 }
 
-/* mobile */
-@media (max-width: 768px) {
-  .foot .foot-container {
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    padding: 30px 16px;
-  }
+/* ✅ Neon underline */
+.foot h3::after {
+  content: '';
+  width: 30px;
+  height: 2px;
+  background: linear-gradient(90deg, #00d4ff, transparent);
+  display: block;
+  margin-top: 6px;
+}
+
+/* ✅ List */
+.foot ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.foot li {
+  margin-bottom: 10px;
+}
+
+/* ✅ Links */
+.foot a {
+  text-decoration: none;
+  color: #b0b0b0;
+  font-size: 14px;
+  transition: all 0.25s ease;
+  display: inline-block;
+}
+
+/* ✅ Hover futuristic effect */
+.foot a:hover {
+  color: #00d4ff;
+  text-shadow: 0 0 8px rgba(0, 212, 255, 0.7);
+  transform: translateX(5px);
 }
