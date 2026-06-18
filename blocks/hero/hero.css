@@ -112,3 +112,30 @@
     padding: 9px 14px;
   }
 }
+
+
+
+/* ✅ hero-bottom variation */
+.hero-bottom .hero-content {
+  top: auto;              /* remove vertical center */
+  bottom: 24px;           /* stick to bottom */
+  transform: none;
+}
+
+/* optional: slightly wider layout for bottom style */
+.hero-bottom .hero-content {
+  max-width: 600px;
+}
+
+/* optional: gradient for readability */
+.hero-bottom .hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.75),
+    rgba(0,0,0,0.2),
+    transparent
+  );
+}
