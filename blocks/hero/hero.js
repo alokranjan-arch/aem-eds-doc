@@ -8,9 +8,8 @@ export default function decorate(block) {
   let subtitle = '';
   let features = '';
   let cta = '';
-  let variant = ''; // ✅ new
+  let variant = '';
 
-  // ✅ Parse key-value rows
   rows.forEach(row => {
     const cells = row.children;
 
@@ -18,7 +17,7 @@ export default function decorate(block) {
     const valueHTML = cells[1]?.innerHTML;
     const valueText = cells[1]?.textContent.trim();
 
-    if (key === 'variant') variant = valueText; // ✅ capture variant
+    if (key === 'variant') variant = valueText;
     if (key === 'background') bgImage = valueHTML;
     if (key === 'title') title = valueText;
     if (key === 'subtitle') subtitle = valueText;
@@ -26,16 +25,14 @@ export default function decorate(block) {
     if (key === 'cta') cta = valueText;
   });
 
-  // ✅ Build wrapper
   const wrapper = document.createElement('div');
   wrapper.className = 'hero-wrapper';
 
-  // ✅ apply variant (only if exists)
+  // ✅ apply variant correctly
   if (variant) {
     wrapper.classList.add(`hero-${variant}`);
   }
 
-  // ✅ Background
   const bg = document.createElement('div');
   bg.className = 'hero-bg';
   bg.innerHTML = bgImage;
@@ -46,14 +43,13 @@ export default function decorate(block) {
     );
   });
 
-  // ✅ Content
   const content = document.createElement('div');
   content.className = 'hero-content';
 
   const ctas = cta.split('/').map(c => c.trim()).filter(Boolean);
 
   const ctaHTML = ctas
-    .map(text => `<a href="#">${text}</a>`)
+    .map(text => `<a href="#">${text}</a>`)   // ✅ fixed
     .join('');
 
   content.innerHTML = `
@@ -65,6 +61,5 @@ export default function decorate(block) {
 
   wrapper.append(bg, content);
 
-  // ✅ replace block
   block.replaceChildren(wrapper);
 }
