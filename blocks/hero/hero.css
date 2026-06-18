@@ -7,7 +7,7 @@
   border-radius: 16px;
 }
 
-/* ✅ important for overlay support */
+/* ✅ needed for overlay support */
 .hero-bg {
   position: relative;
   width: 100%;
@@ -97,19 +97,19 @@
   box-shadow: none;
 }
 
-/* ✅ ========================= */
-/* ✅ HERO BOTTOM VARIANT */
-/* ✅ ========================= */
+/* ✅ ===================================== */
+/* ✅ HERO BOTTOM VARIANT (FIXED SELECTOR) */
+/* ✅ ===================================== */
 
-.hero-bottom .hero-content {
+.hero.bottom .hero-content {
   top: auto;
   bottom: 24px;
   transform: none;
   max-width: 600px;
 }
 
-/* ✅ gradient overlay for readability */
-.hero-bottom .hero-bg::after {
+/* gradient overlay for readability */
+.hero.bottom .hero-bg::after {
   content: '';
   position: absolute;
   inset: 0;
@@ -121,8 +121,8 @@
   );
 }
 
-/* optional slight spacing tweak */
-.hero-bottom .hero-content h1 {
+/* small polish */
+.hero.bottom .hero-content h1 {
   margin-bottom: 8px;
 }
 
@@ -145,8 +145,8 @@
     padding: 9px 14px;
   }
 
-  /* bottom variant mobile tweak */
-  .hero-bottom .hero-content {
+  /* bottom behavior on mobile */
+  .hero.bottom .hero-content {
     bottom: 16px;
     left: 16px;
     right: 16px;
