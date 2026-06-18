@@ -7,6 +7,13 @@
   border-radius: 16px;
 }
 
+/* ✅ important for overlay support */
+.hero-bg {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
 .hero-bg img {
   width: 100%;
   height: 100%;
@@ -50,13 +57,10 @@
   padding: 10px 18px;
   border-radius: 8px;
   font-size: 14px;
-
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
   text-decoration: none;
-
   transition: all 0.25s ease;
 }
 
@@ -93,7 +97,36 @@
   box-shadow: none;
 }
 
-/* mobile */
+/* ✅ ========================= */
+/* ✅ HERO BOTTOM VARIANT */
+/* ✅ ========================= */
+
+.hero-bottom .hero-content {
+  top: auto;
+  bottom: 24px;
+  transform: none;
+  max-width: 600px;
+}
+
+/* ✅ gradient overlay for readability */
+.hero-bottom .hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.8),
+    rgba(0, 0, 0, 0.3),
+    transparent
+  );
+}
+
+/* optional slight spacing tweak */
+.hero-bottom .hero-content h1 {
+  margin-bottom: 8px;
+}
+
+/* ✅ mobile */
 @media (max-width: 768px) {
   .hero-wrapper {
     height: 300px;
@@ -111,31 +144,11 @@
     font-size: 13px;
     padding: 9px 14px;
   }
-}
 
-
-
-/* ✅ hero-bottom variation */
-.hero-bottom .hero-content {
-  top: auto;              /* remove vertical center */
-  bottom: 24px;           /* stick to bottom */
-  transform: none;
-}
-
-/* optional: slightly wider layout for bottom style */
-.hero-bottom .hero-content {
-  max-width: 600px;
-}
-
-/* optional: gradient for readability */
-.hero-bottom .hero-bg::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to top,
-    rgba(0,0,0,0.75),
-    rgba(0,0,0,0.2),
-    transparent
-  );
+  /* bottom variant mobile tweak */
+  .hero-bottom .hero-content {
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+  }
 }
