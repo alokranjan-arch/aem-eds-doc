@@ -1,3 +1,7 @@
+/* ========================= */
+/* DEFAULT HERO (UNCHANGED) */
+/* ========================= */
+
 .hero-wrapper {
   position: relative;
   overflow: hidden;
@@ -21,7 +25,7 @@
   display: block;
 }
 
-/* CONTENT (default center) */
+/* CONTENT */
 .hero-content {
   position: absolute;
   top: 50%;
@@ -30,11 +34,17 @@
   right: 24px;
   max-width: 500px;
   color: #fff;
+
+  /* ✅ critical fix → ensures text ALWAYS visible */
+  z-index: 2;
 }
 
 .hero-content h1 {
   font-size: 36px;
   margin-bottom: 10px;
+
+  /* ✅ fallback visibility fix */
+  text-shadow: 0 2px 8px rgba(0,0,0,0.8);
 }
 
 .hero-content p {
@@ -61,8 +71,10 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  transition: all 0.25s ease;
 }
 
+/* DEFAULT BUTTONS (UNCHANGED) */
 .hero-cta a:first-child {
   background: #7b2fff;
   color: #fff;
@@ -74,27 +86,89 @@
   background: transparent;
 }
 
-/* ✅ ✅ HERO BOTTOM VARIANT (FIXED) */
+.hero-cta a:first-child:hover {
+  background: #00d4ff;
+  color: #000;
+  transform: translateY(-2px);
+}
+
+.hero-cta a:last-child:hover {
+  border-color: #00d4ff;
+  color: #00d4ff;
+  transform: translateY(-2px);
+}
+
+.hero-cta a:active {
+  transform: translateY(0);
+}
+
+
+/* ========================= */
+/* HERO BOTTOM VARIANT ONLY */
+/* ========================= */
+
 .hero-wrapper.hero-bottom .hero-content {
   top: auto;
   bottom: 24px;
   transform: none;
 }
 
-/* overlay */
+/* ✅ STRONG overlay (this is the REAL fix for title visibility) */
 .hero-wrapper.hero-bottom .hero-bg::after {
   content: '';
   position: absolute;
   inset: 0;
+
+  /* IMPORTANT → below text but above image */
+  z-index: 1;
+
   background: linear-gradient(
     to top,
-    rgba(0,0,0,0.8),
-    rgba(0,0,0,0.3),
+    rgba(0,0,0,0.95),
+    rgba(0,0,0,0.6),
+    rgba(0,0,0,0.2),
     transparent
   );
 }
 
-/* mobile */
+/* ✅ ensure image stays behind overlay */
+.hero-wrapper.hero-bottom .hero-bg img {
+  position: relative;
+  z-index: 0;
+}
+
+/* ✅ subtle visual difference */
+.hero-wrapper.hero-bottom .hero-content h1 {
+  font-size: 40px;
+}
+
+/* ✅ DIFFERENT BUTTON STYLE (no effect on default) */
+.hero-wrapper.hero-bottom .hero-cta a:first-child {
+  background: #00d4ff;
+  color: #000;
+}
+
+.hero-wrapper.hero-bottom .hero-cta a:first-child:hover {
+  background: #ffffff;
+  color: #000;
+  box-shadow: 0 0 12px rgba(0,212,255,0.7);
+}
+
+.hero-wrapper.hero-bottom .hero-cta a:last-child {
+  border-color: #00d4ff;
+  color: #00d4ff;
+}
+
+.hero-wrapper.hero-bottom .hero-cta a:last-child:hover {
+  background: #00d4ff;
+  color: #000;
+}
+
+
+/* ========================= */
+/* MOBILE */
+/* ========================= */
+
 @media (max-width: 768px) {
   .hero-wrapper {
     height: 300px;
@@ -107,67 +181,4 @@
   .hero-wrapper.hero-bottom .hero-content {
     bottom: 16px;
   }
-}
-
-/* ✅ FIX: ensure content always visible above image */
-.hero-content {
-  z-index: 1;
-}
-
-.hero-bg {
-  position: relative;
-}
-
-/* ✅ ========================= */
-/* ✅ HERO BOTTOM ENHANCEMENTS */
-/* ✅ ========================= */
-
-.hero-wrapper.hero-bottom .hero-content {
-  top: auto;
-  bottom: 24px;
-  transform: none;
-}
-
-/* ✅ stronger overlay ONLY for bottom variant (fix title visibility) */
-.hero-wrapper.hero-bottom .hero-bg::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to top,
-    rgba(0,0,0,0.9),
-    rgba(0,0,0,0.5),
-    transparent
-  );
-}
-
-/* ✅ slightly bigger title for distinction */
-.hero-wrapper.hero-bottom .hero-content h1 {
-  font-size: 40px;
-}
-
-/* ✅ button style difference */
-.hero-wrapper.hero-bottom .hero-cta a:first-child {
-  background: #00d4ff;
-  color: #000;
-}
-
-/* ✅ primary hover (glow style) */
-.hero-wrapper.hero-bottom .hero-cta a:first-child:hover {
-  background: #fff;
-  color: #000;
-  box-shadow: 0 0 14px rgba(0, 212, 255, 0.8);
-  transform: translateY(-2px);
-}
-
-/* ✅ secondary button */
-.hero-wrapper.hero-bottom .hero-cta a:last-child {
-  border-color: #00d4ff;
-  color: #00d4ff;
-}
-
-/* ✅ secondary hover (fill effect) */
-.hero-wrapper.hero-bottom .hero-cta a:last-child:hover {
-  background: #00d4ff;
-  color: #000;
 }
