@@ -7,7 +7,7 @@
   border-radius: 16px;
 }
 
-/* ✅ needed for overlay support */
+/* background */
 .hero-bg {
   position: relative;
   width: 100%;
@@ -21,6 +21,7 @@
   display: block;
 }
 
+/* content */
 .hero-content {
   position: absolute;
   top: 50%;
@@ -45,14 +46,13 @@
   margin: 14px 0;
 }
 
-/* CTA layout */
+/* CTA */
 .hero-cta {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
 }
 
-/* base button */
 .hero-cta a {
   padding: 10px 18px;
   border-radius: 8px;
@@ -64,69 +64,52 @@
   transition: all 0.25s ease;
 }
 
-/* primary button */
 .hero-cta a:first-child {
   background: #7b2fff;
   color: #fff;
 }
 
-/* secondary button */
 .hero-cta a:last-child {
   background: transparent;
   color: #fff;
   border: 1px solid rgba(255,255,255,0.4);
 }
 
-/* hover effects */
 .hero-cta a:first-child:hover {
   background: #00d4ff;
   color: #000;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
 }
 
 .hero-cta a:last-child:hover {
   border-color: #00d4ff;
   color: #00d4ff;
-  transform: translateY(-2px);
 }
 
-/* active click feel */
-.hero-cta a:active {
-  transform: translateY(0);
-  box-shadow: none;
-}
+/* ✅ ========================= */
+/* ✅ HERO BOTTOM VARIANT */
+/* ✅ (JS adds class: hero-bottom) */
+/* ✅ ========================= */
 
-/* ✅ ===================================== */
-/* ✅ HERO BOTTOM VARIANT (FIXED SELECTOR) */
-/* ✅ ===================================== */
-
-.hero.bottom .hero-content {
+.hero-wrapper.hero-bottom .hero-content {
   top: auto;
   bottom: 24px;
   transform: none;
   max-width: 600px;
 }
 
-/* gradient overlay for readability */
-.hero.bottom .hero-bg::after {
+.hero-wrapper.hero-bottom .hero-bg::after {
   content: '';
   position: absolute;
   inset: 0;
   background: linear-gradient(
     to top,
-    rgba(0, 0, 0, 0.8),
-    rgba(0, 0, 0, 0.3),
+    rgba(0,0,0,0.8),
+    rgba(0,0,0,0.3),
     transparent
   );
 }
 
-/* small polish */
-.hero.bottom .hero-content h1 {
-  margin-bottom: 8px;
-}
-
-/* ✅ mobile */
+/* mobile */
 @media (max-width: 768px) {
   .hero-wrapper {
     height: 300px;
@@ -136,17 +119,7 @@
     font-size: 26px;
   }
 
-  .hero-cta {
-    gap: 8px;
-  }
-
-  .hero-cta a {
-    font-size: 13px;
-    padding: 9px 14px;
-  }
-
-  /* bottom behavior on mobile */
-  .hero.bottom .hero-content {
+  .hero-wrapper.hero-bottom .hero-content {
     bottom: 16px;
     left: 16px;
     right: 16px;
