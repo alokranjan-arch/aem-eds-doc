@@ -108,3 +108,66 @@
     bottom: 16px;
   }
 }
+
+/* ✅ FIX: ensure content always visible above image */
+.hero-content {
+  z-index: 1;
+}
+
+.hero-bg {
+  position: relative;
+}
+
+/* ✅ ========================= */
+/* ✅ HERO BOTTOM ENHANCEMENTS */
+/* ✅ ========================= */
+
+.hero-wrapper.hero-bottom .hero-content {
+  top: auto;
+  bottom: 24px;
+  transform: none;
+}
+
+/* ✅ stronger overlay ONLY for bottom variant (fix title visibility) */
+.hero-wrapper.hero-bottom .hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.9),
+    rgba(0,0,0,0.5),
+    transparent
+  );
+}
+
+/* ✅ slightly bigger title for distinction */
+.hero-wrapper.hero-bottom .hero-content h1 {
+  font-size: 40px;
+}
+
+/* ✅ button style difference */
+.hero-wrapper.hero-bottom .hero-cta a:first-child {
+  background: #00d4ff;
+  color: #000;
+}
+
+/* ✅ primary hover (glow style) */
+.hero-wrapper.hero-bottom .hero-cta a:first-child:hover {
+  background: #fff;
+  color: #000;
+  box-shadow: 0 0 14px rgba(0, 212, 255, 0.8);
+  transform: translateY(-2px);
+}
+
+/* ✅ secondary button */
+.hero-wrapper.hero-bottom .hero-cta a:last-child {
+  border-color: #00d4ff;
+  color: #00d4ff;
+}
+
+/* ✅ secondary hover (fill effect) */
+.hero-wrapper.hero-bottom .hero-cta a:last-child:hover {
+  background: #00d4ff;
+  color: #000;
+}
