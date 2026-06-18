@@ -7,7 +7,7 @@
   border-radius: 16px;
 }
 
-/* background */
+/* BG */
 .hero-bg {
   position: relative;
   width: 100%;
@@ -21,7 +21,7 @@
   display: block;
 }
 
-/* content */
+/* CONTENT (default center) */
 .hero-content {
   position: absolute;
   top: 50%;
@@ -57,11 +57,10 @@
   padding: 10px 18px;
   border-radius: 8px;
   font-size: 14px;
+  text-decoration: none;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  text-decoration: none;
-  transition: all 0.25s ease;
 }
 
 .hero-cta a:first-child {
@@ -70,33 +69,19 @@
 }
 
 .hero-cta a:last-child {
-  background: transparent;
-  color: #fff;
   border: 1px solid rgba(255,255,255,0.4);
+  color: #fff;
+  background: transparent;
 }
 
-.hero-cta a:first-child:hover {
-  background: #00d4ff;
-  color: #000;
-}
-
-.hero-cta a:last-child:hover {
-  border-color: #00d4ff;
-  color: #00d4ff;
-}
-
-/* ✅ ========================= */
-/* ✅ HERO BOTTOM VARIANT */
-/* ✅ (JS adds class: hero-bottom) */
-/* ✅ ========================= */
-
+/* ✅ ✅ HERO BOTTOM VARIANT (FIXED) */
 .hero-wrapper.hero-bottom .hero-content {
   top: auto;
   bottom: 24px;
   transform: none;
-  max-width: 600px;
 }
 
+/* overlay */
 .hero-wrapper.hero-bottom .hero-bg::after {
   content: '';
   position: absolute;
@@ -121,7 +106,5 @@
 
   .hero-wrapper.hero-bottom .hero-content {
     bottom: 16px;
-    left: 16px;
-    right: 16px;
   }
 }
