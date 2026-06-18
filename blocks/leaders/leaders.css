@@ -5,18 +5,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  gap: 24px; /* ✅ equal vertical spacing */
 }
 
-/* TOP CARD */
+/* row for rank 1 */
 .leaders-wrapper .leader-item:nth-child(1) {
   order: 1;
 
-  width: 240px; /* 🔧 slightly reduced for balance */
+  width: 260px;
 
   padding: 22px 18px;
-  margin-bottom: 0;
+  margin-bottom: 20px;
 
   background: #0b0b0f;
   border-radius: 16px;
@@ -25,16 +23,17 @@
 
   text-align: center;
 
-  transform: translateY(-8px);
+  transform: translateY(-10px);
+
   z-index: 2;
 }
 
-/* BOTTOM CARDS */
+/* bottom row container */
 .leaders-wrapper .leader-item:nth-child(2),
 .leaders-wrapper .leader-item:nth-child(3) {
   order: 2;
 
-  width: 240px; /* ✅ SAME size as rank 1 now */
+  width: 220px;
 
   background: #0b0b0f;
   border-radius: 14px;
@@ -46,44 +45,111 @@
   text-align: center;
 }
 
-/* ✅ horizontal layout for 2 & 3 */
+/* wrap 2 & 3 in a flex row effect */
 .leaders-wrapper {
-  flex-wrap: wrap;
-  justify-content: center;
+  position: relative;
 }
 
-/* create proper spacing instead of transform hacks */
+/* create bottom row layout */
+.leaders-wrapper::after {
+  content: '';
+  display: block;
+}
+
+/* proper horizontal grouping */
+.leaders-wrapper {
+  gap: 0;
+}
+
 .leaders-wrapper > .leader-item:nth-child(2),
 .leaders-wrapper > .leader-item:nth-child(3) {
-  margin: 0 12px; /* ✅ equal spacing */
+  margin: 0 10px;
 }
 
-/* ✅ REMOVE uneven transforms */
+/* create horizontal row manually */
+.leaders-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .leaders-wrapper .leader-item:nth-child(2),
 .leaders-wrapper .leader-item:nth-child(3) {
-  transform: none;
+  display: inline-flex;
 }
 
-/* =========================
-   HOVER (clean + consistent)
-========================= */
-.leader-item {
-  transition: all 0.25s ease;
+/* fix positioning */
+.leaders-wrapper .leader-item:nth-child(2) {
+  transform: translateX(-120px);
 }
 
+.leaders-wrapper .leader-item:nth-child(3) {
+  transform: translateX(120px);
+}
+
+/* rank badge */
+.leader-rank {
+  width: 36px;
+  height: 36px;
+
+  margin: 0 auto 8px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  background: rgba(123,47,255,0.15);
+  color: #7b2fff;
+}
+
+/* rank 1 highlight */
+.leaders-wrapper .leader-item:nth-child(1) .leader-rank {
+  background: #7b2fff;
+  color: #fff;
+}
+
+/* name */
+.leader-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+/* achievement */
+.leader-achievement {
+  font-size: 14px;
+  color: #c9c9cf;
+}
+
+/* hover */
 .leader-item:hover {
   transform: translateY(-6px);
-  box-shadow: 0 6px 20px rgba(123,47,255,0.15);
 }
 
-/* =========================
-   MOBILE FIX
-========================= */
+.leaders-wrapper .leader-item:nth-child(2):hover {
+  transform: translateX(-120px) translateY(-6px);
+}
+
+.leaders-wrapper .leader-item:nth-child(3):hover {
+  transform: translateX(120px) translateY(-6px);
+}
+
+/* mobile */
 @media (max-width: 768px) {
+
+  .leaders-wrapper {
+    flex-direction: column;
+  }
 
   .leaders-wrapper .leader-item:nth-child(2),
   .leaders-wrapper .leader-item:nth-child(3) {
-    margin: 6px 0;
+    transform: none;
+    margin: 10px 0;
   }
 
   .leaders-wrapper .leader-item:nth-child(1) {
