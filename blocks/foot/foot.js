@@ -1,56 +1,45 @@
-import { getMetadata } from '../../scripts/aem.js';
-import { loadFragment } from '../fragment/fragment.js';
+export default function decorate(block) {
+  // ✅ Create inner container
+  const inner = document.createElement('div');
+  inner.className = 'foot-inner';
 
-export default async function decorate(block) {
-  const footMeta = getMetadata('foot');
-
-  const footPath = footMeta
-    ? new URL(footMeta, window.location).pathname
-    : '/foot';
-
-  const fragment = await loadFragment(footPath);
-
-  if (!fragment) return;
-
-  const rows = [...fragment.querySelectorAll(':scope > div > div')];
-
-  const wrapper = document.createElement('div');
-  wrapper.className = 'foot';
-
-  const container = document.createElement('div');
-  container.className = 'foot-container';
-
-  rows.forEach((row) => {
-    const cells = [...row.children];
-    if (cells.length < 2) return;
-
-    const title = cells[0].textContent.trim();
-    const linksText = cells[1].textContent.trim();
+  // ✅ Process each row
+  [...block.children].forEach((row) => {
+    const title = row.children[0];
+    const links = row.children[1];
 
     const col = document.createElement('div');
-    col.className = 'foot-col';
+    col.className = 'col';
 
-    const heading = document.createElement('div');
-    heading.className = 'foot-title';
-    heading.textContent = title;
+    // ✅ Title
+    const h3 = document.createElement('h3');
+    h3.textContent = title.textContent;
 
-    const list = document.createElement('div');
-    list.className = 'foot-links';
+    // ✅ Link list
+    const ul = document.createElement('ul');
 
-    linksText.split(',').forEach((l) => {
+    links.textContent.split(',').forEach((item) => {
+      const li = document.createElement('li');
       const a = document.createElement('a');
-      a.className = 'foot-link';
-      a.textContent = l.trim();
-      a.href = '#';
-      list.appendChild(a);
+
+      const text = item.trim();
+      a.textContent = text;
+
+      // ✅ SEO-friendly URL
+      const slug = text.toLowerCase().replace(/\s+/g, '-');
+      a.href = `/${slug}`;
+
+      li.appendChild(a);
+      ul.appendChild(li);
     });
 
-    col.append(heading, list);
-    container.appendChild(col);
+    col.appendChild(h3);
+    col.appendChild(ul);
+
+    inner.appendChild(col);
   });
 
-  wrapper.appendChild(container);
-
+  // ✅ Replace block content
   block.innerHTML = '';
-  block.appendChild(wrapper);
+  block.appendChild(inner);
 }
