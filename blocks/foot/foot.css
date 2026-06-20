@@ -100,6 +100,7 @@
 
   .foot .foot-inner {
     grid-template-columns: 1fr 1fr; /* ✅ 2 columns for tablets */
+    max-width: 100%;
     gap: 24px;
   }
 
@@ -140,6 +141,7 @@
   .foot .foot-inner {
     grid-template-columns: 1fr; /* ✅ stack cleanly */
     gap: 20px;
+    max-width: 100%;
   }
 
   .foot h3 {
