@@ -30,7 +30,44 @@
 }
 
 @media (max-width: 768px) {
+
   .cards-wrapper {
     grid-template-columns: 1fr;
+    gap: 14px;
+    padding: 0 10px; /* ✅ add side breathing space */
+  }
+
+  .card-item {
+    border-radius: 12px;
+  }
+
+  .card-img img {
+    height: 160px; /* ✅ slightly smaller */
+  }
+
+  .card-content {
+    padding: 12px;
+  }
+
+  /* ✅ disable hover on mobile */
+  .card-item:hover {
+    transform: none;
+  }
+}
+
+/* ✅ EXTRA SMALL DEVICES */
+@media (max-width: 480px) {
+
+  .cards-wrapper {
+    gap: 12px;
+    padding: 0 8px;
+  }
+
+  .card-img img {
+    height: 140px;
+  }
+
+  .card-content {
+    padding: 10px;
   }
 }
