@@ -168,17 +168,89 @@
 /* ========================= */
 /* MOBILE */
 /* ========================= */
-
 @media (max-width: 768px) {
+
+  /* ✅ Dynamic height instead of fixed */
   .hero-wrapper {
-    height: 300px;
+    height: auto;
+    min-height: 320px;
+    border-radius: 12px;
   }
 
+  /* ✅ Image scales naturally */
+  .hero-bg img {
+    height: 100%;
+    min-height: 320px;
+  }
+
+  /* ✅ Content spacing fix */
+  .hero-content {
+    top: auto;
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    transform: none;
+    max-width: 100%;
+  }
+
+  /* ✅ Title scaling */
   .hero-content h1 {
+    font-size: 24px;
+    line-height: 1.2;
+  }
+
+  .hero-content p {
+    font-size: 13px;
+  }
+
+  .hero-features {
+    font-size: 13px;
+    margin: 10px 0;
+  }
+
+  /* ✅ CTA buttons better for mobile */
+  .hero-cta {
+    gap: 8px;
+  }
+
+  .hero-cta a {
+    font-size: 13px;
+    padding: 8px 14px;
+  }
+
+  /* ✅ Stack buttons if needed */
+  @media (max-width: 480px) {
+    .hero-cta {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .hero-cta a {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+
+  /* ========================= */
+  /* ✅ HERO BOTTOM FIX */
+  /* ========================= */
+
+  .hero-wrapper.hero-bottom .hero-content {
+    bottom: 12px;
+  }
+
+  .hero-wrapper.hero-bottom .hero-content h1 {
     font-size: 26px;
   }
 
-  .hero-wrapper.hero-bottom .hero-content {
-    bottom: 16px;
+  /* ✅ Stronger overlay for small screens */
+  .hero-wrapper.hero-bottom .hero-bg::after {
+    background: linear-gradient(
+      to top,
+      rgba(0,0,0,0.98),
+      rgba(0,0,0,0.75),
+      rgba(0,0,0,0.4),
+      transparent
+    );
   }
 }
