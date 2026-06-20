@@ -32,8 +32,32 @@
   color: #00d4ff;
 }
 
+.menu-toggle {
+  display: none;
+  font-size: 26px;
+  cursor: pointer;
+}
+
 @media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-wrapper {
+    flex-wrap: wrap;
+  }
+
   .nav-links {
-    display: none;
+    width: 100%;
+    flex-direction: column;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: all 0.4s ease;
+  }
+
+  .nav-links.active {
+    max-height: 300px;
+    opacity: 1;
   }
 }
