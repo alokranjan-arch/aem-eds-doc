@@ -30,8 +30,37 @@
 }
 
 @media (max-width: 768px) {
+
+  .announcement-wrapper {
+    padding: 12px 10px; /* ✅ add side padding */
+  }
+
   .announcement-content {
     flex-direction: column;
+    align-items: center;
     gap: 6px;
+    padding: 0; /* ✅ remove extra side padding */
+  }
+
+  .announcement-message {
+    font-size: 14px;
+    line-height: 1.4;
+    word-break: break-word; /* ✅ prevents overflow */
+  }
+
+  /* ✅ Hide separator (not needed in vertical layout) */
+  .announcement-separator {
+    display: none;
+  }
+}
+
+/* ✅ Extra polish for very small screens */
+@media (max-width: 480px) {
+  .announcement-message {
+    font-size: 13px;
+  }
+
+  .announcement-wrapper {
+    border-radius: 10px;
   }
 }
