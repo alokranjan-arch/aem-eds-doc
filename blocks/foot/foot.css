@@ -91,3 +91,69 @@
   text-shadow: 0 0 8px rgba(0, 212, 255, 0.7);
   transform: translateX(5px);
 }
+
+@media (max-width: 768px) {
+
+  .foot {
+    padding: 40px 16px; /* ✅ reduced padding */
+  }
+
+  .foot .foot-inner {
+    grid-template-columns: 1fr 1fr; /* ✅ 2 columns for tablets */
+    gap: 24px;
+  }
+
+  .foot h3 {
+    font-size: 12px;
+    margin-bottom: 12px;
+  }
+
+  .foot a {
+    font-size: 13px;
+  }
+
+  .foot li {
+    margin-bottom: 8px;
+  }
+
+  /* ✅ reduce glow intensity */
+  .foot::before {
+    width: 350px;
+    height: 350px;
+    filter: blur(60px);
+  }
+
+  /* ✅ disable hover movement on mobile */
+  .foot a:hover {
+    transform: none;
+    text-shadow: none;
+  }
+}
+
+/* ✅ EXTRA SMALL DEVICES */
+@media (max-width: 480px) {
+
+  .foot {
+    padding: 32px 14px;
+  }
+
+  .foot .foot-inner {
+    grid-template-columns: 1fr; /* ✅ stack cleanly */
+    gap: 20px;
+  }
+
+  .foot h3 {
+    font-size: 11px;
+  }
+
+  .foot a {
+    font-size: 12px;
+  }
+
+  /* ✅ further reduce glow for small screens */
+  .foot::before {
+    width: 250px;
+    height: 250px;
+    filter: blur(50px);
+  }
+}
