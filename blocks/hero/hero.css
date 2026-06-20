@@ -254,3 +254,32 @@
     );
   }
 }
+@media (max-width: 768px) {
+
+  .hero-cta {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .hero-cta a {
+    max-width: 100%;
+    box-sizing: border-box;
+    white-space: nowrap;   /* prevents weird line breaks */
+  }
+
+  /* ✅ Strong fix for small phones */
+  @media (max-width: 480px) {
+
+    .hero-cta {
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .hero-cta a {
+      width: 100%;
+      max-width: 100%;
+      text-align: center;
+      justify-content: center;
+    }
+  }
+}
