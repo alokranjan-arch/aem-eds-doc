@@ -130,20 +130,36 @@
 /* mobile */
 @media (max-width: 768px) {
 
-  /* ✅ Single card full width */
+  /* ✅ viewport safety */
+  .carousel-viewport {
+    overflow: hidden;
+  }
+
+  /* ✅ track reset */
+  .carousel-track {
+    gap: 0; /* prevent accidental spacing */
+  }
+
+  /* ✅ FIX: full-width slide (critical) */
   .carousel-card {
     flex: 0 0 100%;
     max-width: 100%;
-    padding: 0 6px; /* less horizontal padding */
+    padding: 0; /* ❗ remove padding causing half-slide issue */
   }
 
-  /* ✅ Better image scaling */
+  /* ✅ keep spacing visually (inside instead) */
+  .carousel-inner {
+    margin: 0 8px;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  /* ✅ image scaling */
   .carousel-img img {
     height: 190px;
-    border-radius: 12px;
   }
 
-  /* ✅ Improve text spacing */
+  /* ✅ text spacing */
   .carousel-content {
     bottom: 12px;
     padding: 0 10px;
@@ -158,7 +174,7 @@
     font-size: 12px;
   }
 
-  /* ✅ Fix arrows inside view (touch friendly) */
+  /* ✅ arrows inside view */
   .carousel-arrow {
     padding: 8px 10px;
     font-size: 16px;
@@ -176,7 +192,7 @@
     transform: translateY(-50%);
   }
 
-  /* ✅ Better dots spacing */
+  /* ✅ dots */
   .carousel-dots {
     margin-top: 10px;
   }
@@ -187,7 +203,7 @@
   }
 }
 
-/* ✅ ✅ Extra polish for very small screens */
+/* ✅ EXTRA SMALL DEVICES */
 @media (max-width: 480px) {
 
   .carousel-img img {
@@ -202,18 +218,17 @@
     font-size: 11px;
   }
 
-  /* ✅ Slight dim overlay improvement */
+  .carousel-arrow {
+    padding: 6px 8px;
+    font-size: 14px;
+  }
+
+  /* ✅ stronger overlay for readability */
   .carousel-inner::after {
     background: linear-gradient(
       to top,
       rgba(0,0,0,0.85),
       rgba(0,0,0,0.2)
     );
-  }
-
-  /* ✅ Smaller arrows */
-  .carousel-arrow {
-    padding: 6px 8px;
-    font-size: 14px;
   }
 }
