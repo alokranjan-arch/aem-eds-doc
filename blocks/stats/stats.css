@@ -45,18 +45,41 @@
 
 /* mobile */
 @media (max-width: 768px) {
+
   .stats-wrapper {
     grid-template-columns: 1fr 1fr;
-    gap: 10px;
+    gap: 12px; /* slightly more breathing room */
   }
 
   .stat-card {
-    min-height: 95px;
-    padding: 14px 10px;
+    min-height: 100px;
+    padding: 14px;
   }
 
   .stat-card h2 {
     font-size: 18px;
+  }
+
+  .stat-card p {
+    font-size: 11px;
+  }
+}
+
+/* ✅ ✅ EXTRA FIX for small phones */
+@media (max-width: 480px) {
+
+  .stats-wrapper {
+    grid-template-columns: 1fr; /* stack cards */
+    gap: 10px;
+  }
+
+  .stat-card {
+    min-height: 90px;
+    padding: 12px;
+  }
+
+  .stat-card h2 {
+    font-size: 17px;
   }
 
   .stat-card p {
