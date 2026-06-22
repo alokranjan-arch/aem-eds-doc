@@ -1,6 +1,4 @@
-/* ========================= */
-/* DEFAULT HERO (UNCHANGED) */
-/* ========================= */
+/* DEFAULT HERO  */
 
 .hero-wrapper {
   position: relative;
@@ -35,7 +33,7 @@
   max-width: 500px;
   color: #fff;
 
-  /* ✅ critical fix → ensures text ALWAYS visible */
+  
   z-index: 2;
 }
 
@@ -43,7 +41,7 @@
   font-size: 36px;
   margin-bottom: 10px;
 
-  /* ✅ fallback visibility fix */
+  
   text-shadow: 0 2px 8px rgba(0,0,0,0.8);
 }
 
@@ -113,13 +111,13 @@
   transform: none;
 }
 
-/* ✅ STRONG overlay (this is the REAL fix for title visibility) */
+
 .hero-wrapper.hero-bottom .hero-bg::after {
   content: '';
   position: absolute;
   inset: 0;
 
-  /* IMPORTANT → below text but above image */
+  
   z-index: 1;
 
   background: linear-gradient(
@@ -131,18 +129,18 @@
   );
 }
 
-/* ✅ ensure image stays behind overlay */
+
 .hero-wrapper.hero-bottom .hero-bg img {
   position: relative;
   z-index: 0;
 }
 
-/* ✅ subtle visual difference */
+
 .hero-wrapper.hero-bottom .hero-content h1 {
   font-size: 40px;
 }
 
-/* ✅ DIFFERENT BUTTON STYLE (no effect on default) */
+
 .hero-wrapper.hero-bottom .hero-cta a:first-child {
   background: #00d4ff;
   color: #000;
@@ -170,20 +168,20 @@
 /* ========================= */
 @media (max-width: 768px) {
 
-  /* ✅ Dynamic height instead of fixed */
+  
   .hero-wrapper {
     height: auto;
     min-height: 320px;
     border-radius: 12px;
   }
 
-  /* ✅ Image scales naturally */
+  
   .hero-bg img {
     height: 100%;
     min-height: 320px;
   }
 
-  /* ✅ Content spacing fix */
+  
   .hero-content {
     top: auto;
     bottom: 16px;
@@ -193,7 +191,7 @@
     max-width: 100%;
   }
 
-  /* ✅ Title scaling */
+  
   .hero-content h1 {
     font-size: 24px;
     line-height: 1.2;
@@ -208,7 +206,7 @@
     margin: 10px 0;
   }
 
-  /* ✅ CTA buttons better for mobile */
+  
   .hero-cta {
     gap: 8px;
   }
@@ -218,7 +216,7 @@
     padding: 8px 14px;
   }
 
-  /* ✅ Stack buttons if needed */
+  
   @media (max-width: 480px) {
     .hero-cta {
       flex-direction: column;
@@ -231,9 +229,7 @@
     }
   }
 
-  /* ========================= */
-  /* ✅ HERO BOTTOM FIX */
-  /* ========================= */
+
 
   .hero-wrapper.hero-bottom .hero-content {
     bottom: 12px;
@@ -243,7 +239,7 @@
     font-size: 26px;
   }
 
-  /* ✅ Stronger overlay for small screens */
+  
   .hero-wrapper.hero-bottom .hero-bg::after {
     background: linear-gradient(
       to top,
@@ -267,7 +263,7 @@
     white-space: nowrap;   /* prevents weird line breaks */
   }
 
-  /* ✅ Strong fix for small phones */
+  
   @media (max-width: 480px) {
 
     .hero-cta {
