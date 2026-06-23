@@ -28,7 +28,7 @@ export default async function decorate(block) {
               <p class="extra">${game.releaseDate || ''}</p>
 
               <div class="cta-container">
-  ${game.link || '#'}
+  <a href="${game.link || '#'}" class="cta">
     ${game.cta || 'Play Now'}
   </a>
 </div>
