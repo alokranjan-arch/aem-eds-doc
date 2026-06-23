@@ -1,158 +1,90 @@
-.leaders-wrapper {
-  width: 100%;
-  margin: 40px 0;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* row for rank 1 */
-.leaders-wrapper .leader-item:nth-child(1) {
-  order: 1;
-
-  width: 260px;
-
-  padding: 22px 18px;
-  margin-bottom: 20px;
-
-  background: #0b0b0f;
-  border-radius: 16px;
-
-  border: 1px solid rgba(123,47,255,0.4);
-
-  text-align: center;
-
-  transform: translateY(-10px);
-
-  z-index: 2;
-}
-
-/* bottom row container */
-.leaders-wrapper .leader-item:nth-child(2),
-.leaders-wrapper .leader-item:nth-child(3) {
-  order: 2;
-
-  width: 220px;
-
-  background: #0b0b0f;
-  border-radius: 14px;
-
-  padding: 18px 16px;
-
-  border: 1px solid rgba(255,255,255,0.06);
-
-  text-align: center;
-}
-
-/* wrap 2 & 3 in a flex row effect */
-.leaders-wrapper {
-  position: relative;
-}
-
-/* create bottom row layout */
-.leaders-wrapper::after {
-  content: '';
-  display: block;
-}
-
-/* proper horizontal grouping */
-.leaders-wrapper {
-  gap: 0;
-}
-
-.leaders-wrapper > .leader-item:nth-child(2),
-.leaders-wrapper > .leader-item:nth-child(3) {
-  margin: 0 10px;
-}
-
-/* create horizontal row manually */
+/* Wrapper */
 .leaders-wrapper {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.leaders-wrapper .leader-item:nth-child(2),
-.leaders-wrapper .leader-item:nth-child(3) {
-  display: inline-flex;
-}
-
-/* fix positioning */
-.leaders-wrapper .leader-item:nth-child(2) {
-  transform: translateX(-120px);
-}
-
-.leaders-wrapper .leader-item:nth-child(3) {
-  transform: translateX(120px);
-}
-
-/* rank badge */
-.leader-rank {
-  width: 36px;
-  height: 36px;
-
-  margin: 0 auto 8px;
-
-  display: flex;
-  align-items: center;
   justify-content: center;
-
-  border-radius: 50%;
-
-  font-size: 13px;
-  font-weight: 700;
-
-  background: rgba(123,47,255,0.15);
-  color: #7b2fff;
+  align-items: flex-end;
+  gap: 24px;
+  width: 100%;
+  margin: 50px 0;
 }
 
-/* rank 1 highlight */
-.leaders-wrapper .leader-item:nth-child(1) .leader-rank {
-  background: #7b2fff;
+/* Base card */
+.leader-item {
+  background: linear-gradient(160deg, #0b0b0f, #111827);
+  border-radius: 16px;
+  padding: 18px 16px;
+  width: 220px;
+  text-align: center;
   color: #fff;
+  border: 1px solid rgba(255,255,255,0.08);
+  transition: 0.3s ease;
 }
 
-/* name */
-.leader-name {
-  font-size: 16px;
-  font-weight: 600;
-  color: #ffffff;
-}
-
-/* achievement */
-.leader-achievement {
-  font-size: 14px;
-  color: #c9c9cf;
-}
-
-/* hover */
 .leader-item:hover {
   transform: translateY(-6px);
 }
 
-.leaders-wrapper .leader-item:nth-child(2):hover {
-  transform: translateX(-120px) translateY(-6px);
+/* Rank badges */
+.leader-rank {
+  margin-bottom: 10px;
+  font-weight: 700;
+  font-size: 14px;
+  color: #7b2fff;
 }
 
-.leaders-wrapper .leader-item:nth-child(3):hover {
-  transform: translateX(120px) translateY(-6px);
+/* Name */
+.leader-name {
+  font-size: 16px;
+  font-weight: 600;
 }
 
-/* mobile */
+/* Achievement */
+.leader-achievement {
+  font-size: 13px;
+  color: #9ca3af;
+  margin-top: 4px;
+}
+
+/* ✅ Rank positioning */
+
+/* Rank 1 (center & bigger) */
+.rank-1 {
+  order: 2;
+  width: 260px;
+  padding: 24px 18px;
+  border: 1px solid rgba(123,47,255,0.5);
+  transform: translateY(-10px);
+}
+
+.rank-1 .leader-rank {
+  background: #7b2fff;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 8px;
+}
+
+/* Rank 2 */
+.rank-2 {
+  order: 1;
+}
+
+/* Rank 3 */
+.rank-3 {
+  order: 3;
+}
+
+/* Mobile */
 @media (max-width: 768px) {
-
   .leaders-wrapper {
     flex-direction: column;
+    align-items: center;
   }
 
-  .leaders-wrapper .leader-item:nth-child(2),
-  .leaders-wrapper .leader-item:nth-child(3) {
-    transform: none;
-    margin: 10px 0;
+  .leader-item {
+    width: 90%;
   }
 
-  .leaders-wrapper .leader-item:nth-child(1) {
+  .rank-1 {
     transform: none;
   }
 }
