@@ -1,12 +1,12 @@
-/* ✅ Make footer section full width (override global constraint) */
+
 .section:has(.foot) {
   width: 100%;
   padding: 0;
 }
 
-/* ✅ Footer outer layer (full width background) */
+
 .foot {
-  width: 100%;
+  width: 96%;
   background: radial-gradient(circle at top, #1a1a2e, #050509);
   padding: 60px 20px;
   color: #e6e6e6;
