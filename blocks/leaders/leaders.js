@@ -1,5 +1,5 @@
 export default function decorate(block) {
-  const rows = [...block.children];
+  const rows = [...block.children].slice(0, 3);
 
   const wrapper = document.createElement('div');
   wrapper.className = 'leaders-wrapper';
@@ -10,29 +10,17 @@ export default function decorate(block) {
     const name = cells[0]?.textContent.trim();
     const achievement = cells[1]?.textContent.trim();
 
-    // skip header/empty rows
     if (!name || !achievement || name.toLowerCase() === 'player') return;
 
     const item = document.createElement('div');
-    item.className = 'leader-item';
+    item.className = `leader-item rank-${index + 1}`;
 
-    const rank = document.createElement('div');
-    rank.className = 'leader-rank';
-    rank.textContent = String(index + 1).padStart(2, '0');
+    item.innerHTML = `
+      <div class="leader-rank">#${index + 1}</div>
+      <div class="leader-name">${name}</div>
+      <div class="leader-achievement">${achievement}</div>
+    `;
 
-    const text = document.createElement('div');
-    text.className = 'leader-text';
-
-    const nameEl = document.createElement('div');
-    nameEl.className = 'leader-name';
-    nameEl.textContent = name;
-
-    const achievementEl = document.createElement('div');
-    achievementEl.className = 'leader-achievement';
-    achievementEl.textContent = achievement;
-
-    text.append(nameEl, achievementEl);
-    item.append(rank, text);
     wrapper.appendChild(item);
   });
 
