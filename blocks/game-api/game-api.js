@@ -27,9 +27,11 @@ export default async function decorate(block) {
               <p class="extra">${game.platforms ? game.platforms.join(', ') : ''}</p>
               <p class="extra">${game.releaseDate || ''}</p>
 
-              <a href="${game.link || '#'}" class="cta">
-                ${game.cta || 'Play Now'}
-              </a>
+              <div class="cta-container">
+  ${game.link || '#'}
+    ${game.cta || 'Play Now'}
+  </a>
+</div>
             </div>
           </div>
         `).join('')}
