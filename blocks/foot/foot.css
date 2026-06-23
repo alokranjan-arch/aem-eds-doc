@@ -1,6 +1,6 @@
 /* ✅ Make footer section full width (override global constraint) */
 .section:has(.foot) {
-  max-width: 100%;
+  width: 100%;
   padding: 0;
 }
 
